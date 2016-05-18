@@ -3,7 +3,6 @@ return array (
   'modules' => 
   array (
     'Ced_DevTool' => 1,
-    'Ecommage_CommandLineSample' => 1,
     'Magento_Store' => 1,
     'Magento_AdvancedPricingImportExport' => 1,
     'Magento_Directory' => 1,
