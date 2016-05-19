@@ -7,16 +7,12 @@
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "repositories": {
-        "0": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        },
-        "ced": {
-            "type": "git",
-            "url": "https://github.com/cedcommerce/Magento2-Developer-Debug-Tool"
         }
-    },
+    ],
     "require": {
         "magento/product-community-edition": "2.0.6",
         "composer/composer": "@alpha",
@@ -26,10 +22,10 @@
         "magento/module-catalog-sample-data": "100.0.*",
         "magento/module-customer-sample-data": "100.0.*",
         "magento/module-cms-sample-data": "100.0.*",
+        "magento/module-tax-sample-data": "100.0.*",
+        "magento/module-review-sample-data": "100.0.*",
         "magento/module-catalog-rule-sample-data": "100.0.*",
         "magento/module-sales-rule-sample-data": "100.0.*",
-        "magento/module-review-sample-data": "100.0.*",
-        "magento/module-tax-sample-data": "100.0.*",
         "magento/module-sales-sample-data": "100.0.*",
         "magento/module-grouped-product-sample-data": "100.0.*",
         "magento/module-downloadable-sample-data": "100.0.*",
@@ -39,8 +35,7 @@
         "magento/module-wishlist-sample-data": "100.0.*",
         "magento/module-swatches-sample-data": "100.0.*",
         "magento/sample-data-media": "100.0.*",
-        "magento/module-offline-shipping-sample-data": "100.0.*",
-        "cedcommerce/magento2-developer-debug-tool": "*"
+        "magento/module-offline-shipping-sample-data": "100.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
