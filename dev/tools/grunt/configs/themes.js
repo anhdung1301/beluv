@@ -41,20 +41,20 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    ecommage_us: {
+    ecommage_gb: {
         area: 'frontend',
-        name: 'Nas/default',
-        locale: 'en_US',
+        name: 'Ecommage/default',
+        locale:'en_GB',
         files: [
             'css/styles-m',
             'css/styles-l'
         ],
         dsl: 'less'
     },
-    ecommage_gb: {
+    ecommage_us: {
         area: 'frontend',
-        name: 'Nas/default',
-        locale: 'en_GB',
+        name: 'Ecommage/default',
+        locale:'en_US',
         files: [
             'css/styles-m',
             'css/styles-l'
