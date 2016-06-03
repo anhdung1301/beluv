@@ -1,5 +1,6 @@
 composer.json composer.json
 composer.lock composer.lock
-app/code/Ecommage app/code/Ecommage
 app/etc/config.php app/etc/config.php
+app/design/frontend/Ecommage app/design/frontend/Ecommage
 dev/tools/grunt/configs/themes.js dev/tools/grunt/configs/themes.js
+app/code app/code
