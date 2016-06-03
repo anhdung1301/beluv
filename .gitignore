@@ -1,0 +1,13 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!/.modman
+!/.modman/**
+!composer.json
+!composer.lock
+# etc...
+
+# ...even if they are in subdirectories
+#!*/
