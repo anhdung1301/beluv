@@ -1,5 +1,5 @@
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -41,20 +41,20 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    ecommage_gb: {
+    ecommage_us: {
         area: 'frontend',
         name: 'Ecommage/default',
-        locale:'en_GB',
+        locale: 'en_US',
         files: [
             'css/styles-m',
             'css/styles-l'
         ],
         dsl: 'less'
     },
-    ecommage_us: {
+    ecommage_gb: {
         area: 'frontend',
         name: 'Ecommage/default',
-        locale:'en_US',
+        locale: 'en_GB',
         files: [
             'css/styles-m',
             'css/styles-l'
