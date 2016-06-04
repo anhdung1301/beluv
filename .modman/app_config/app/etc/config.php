@@ -114,6 +114,7 @@ return array (
     'Magento_Variable' => 1,
     'Magento_Version' => 1,
     'Magento_Webapi' => 1,
+    'Magento_WebapiSecurity' => 1,
     'Magento_SalesRuleSampleData' => 1,
     'Magento_CatalogWidget' => 1,
     'Magento_WidgetSampleData' => 1,
