@@ -31,16 +31,6 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    luma: {
-        area: 'frontend',
-        name: 'Magento/luma',
-        locale: 'en_US',
-        files: [
-            'css/styles-m',
-            'css/styles-l'
-        ],
-        dsl: 'less'
-    },
     ecommage_us: {
         area: 'frontend',
         name: 'Ecommage/default',
