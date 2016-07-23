@@ -31,20 +31,10 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    ecommage_us: {
+    ecommage: {
         area: 'frontend',
         name: 'Ecommage/default',
         locale: 'en_US',
-        files: [
-            'css/styles-m',
-            'css/styles-l'
-        ],
-        dsl: 'less'
-    },
-    ecommage_gb: {
-        area: 'frontend',
-        name: 'Ecommage/default',
-        locale: 'en_GB',
         files: [
             'css/styles-m',
             'css/styles-l'
