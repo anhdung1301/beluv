@@ -72,7 +72,7 @@
         "magento": {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        }
+        },
         "ecommage-theme-to-deploy": {
             "type": "git",
             "url": "ssh://git@stash.ecommage.com:7999/m2e/theme_to_deploy.git"
