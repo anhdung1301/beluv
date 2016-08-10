@@ -31,7 +31,9 @@
         "magento/sample-data-media": "100.1.*",
         "magento/module-offline-shipping-sample-data": "100.1.*",
         "ecommage/theme-to-deploy": "2.1.*",
-        "ced/magento2-developer-debug-tool": "dev-master"
+        "ced/magento2-developer-debug-tool": "dev-master",
+        "magepal/magento2-gmailsmtpapp": "dev-master",
+        "sebwite/magento2-smartsearch": "1.0.3"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
@@ -81,6 +83,14 @@
         "debug-tool": {
             "type": "git",
             "url": "https://github.com/cedcommerce/Magento2-Developer-Debug-Tool.git"
+        },
+        "email-smtp": {
+            "type": "git",
+            "url": "git@github.com:magepal/magento2-gmailsmtpapp.git"
+        },
+        "smart-search": {
+            "type": "git",
+            "url": "git@github.com:Sebwite/Magento2-SmartSearch.git"
         }
     },
     "extra": {
