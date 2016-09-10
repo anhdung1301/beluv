@@ -9,9 +9,7 @@
     ],
     "require": {
         "magento/product-community-edition": "2.1.1",
-        "composer/composer": "@alpha",
-        "ecommage/theme-to-deploy": "2.1.*",
-        "ced/magento2-developer-debug-tool": "dev-master"
+        "composer/composer": "@alpha"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
@@ -53,14 +51,6 @@
         "magento": {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        },
-        "ecommage-theme-to-deploy": {
-            "type": "git",
-            "url": "ssh://git@stash.ecommage.com:7999/m2e/theme_to_deploy.git"
-        },
-        "debug-tool": {
-            "type": "git",
-            "url": "https://github.com/cedcommerce/Magento2-Developer-Debug-Tool.git"
         }
     },
     "extra": {
