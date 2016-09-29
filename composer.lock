@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "041e05f448edbb5776b9ed8c02c399c5",
-    "content-hash": "3ab1961df8ebd99b3cb455476de1de0d",
+    "hash": "75f583680bb007f42736633f72c1e9b7",
+    "content-hash": "81fdc7df641d6670e07787c300462bc9",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -53,32 +53,6 @@
             ],
             "description": "Braintree PHP Client Library",
             "time": "2015-11-19 19:14:47"
-        },
-        {
-            "name": "ced/magento2-developer-debug-tool",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cedcommerce/Magento2-Developer-Debug-Tool.git",
-                "reference": "946745d6f1b13be3e2b7fc236954067340782a0e"
-            },
-            "require": {
-                "php": "~5.5.0|~5.6.0|~7.0.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Ced\\DevTool\\": ""
-                }
-            },
-            "license": [
-                "EULA"
-            ],
-            "description": "Magento 2 Developer-Debug Tool by CedCommerce",
-            "time": "2016-07-16 07:14:18"
         },
         {
             "name": "colinmollenhour/cache-backend-file",
@@ -426,33 +400,6 @@
                 "validator"
             ],
             "time": "2016-05-04 12:27:30"
-        },
-        {
-            "name": "ecommage/theme-to-deploy",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "ssh://git@stash.ecommage.com:7999/m2e/theme_to_deploy.git",
-                "reference": "fe138d1064e744dcdc1536ccc5777a522b99b0f4"
-            },
-            "require": {
-                "php": "~5.5.0|~5.6.0|~7.0.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Ecommage\\ThemeToDeploy\\": ""
-                }
-            },
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "The extension allows to specify specific theme to deploy",
-            "time": "2016-07-24 18:06:46"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -9166,7 +9113,6 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
-        "ced/magento2-developer-debug-tool": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
