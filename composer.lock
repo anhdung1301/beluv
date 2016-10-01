@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "75f583680bb007f42736633f72c1e9b7",
-    "content-hash": "81fdc7df641d6670e07787c300462bc9",
+    "hash": "e1b03d9b82d24da27d519cb0d8cc2f41",
+    "content-hash": "6e8ad6929e39ad4c2415044b655fd7d2",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -342,16 +342,16 @@
         },
         {
             "name": "composer/spdx-licenses",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/spdx-licenses.git",
-                "reference": "88c26372b1afac36d8db601cdf04ad8716f53d88"
+                "reference": "96c6a07b05b716e89a44529d060bc7f5c263cb13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/88c26372b1afac36d8db601cdf04ad8716f53d88",
-                "reference": "88c26372b1afac36d8db601cdf04ad8716f53d88",
+                "url": "https://api.github.com/repos/composer/spdx-licenses/zipball/96c6a07b05b716e89a44529d060bc7f5c263cb13",
+                "reference": "96c6a07b05b716e89a44529d060bc7f5c263cb13",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +399,7 @@
                 "spdx",
                 "validator"
             ],
-            "time": "2016-05-04 12:27:30"
+            "time": "2016-09-28 07:17:45"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -5342,6 +5342,43 @@
             "time": "2015-10-29 14:34:55"
         },
         {
+            "name": "mgtcommerce/module-mgtdevelopertoolbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mgtcommerce/Mgt_Developertoolbar.git",
+                "reference": "9ad59f97e1780e7c22501974b7fbfb02868ec79f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mgtcommerce/Mgt_Developertoolbar/zipball/9ad59f97e1780e7c22501974b7fbfb02868ec79f",
+                "reference": "9ad59f97e1780e7c22501974b7fbfb02868ec79f",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "~100.1",
+                "php": "~5.6.0|~7.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/app/code/Mgt/DeveloperToolbar/registration.php"
+                ],
+                "psr-4": {
+                    "Mgt\\DeveloperToolbar\\": "src/app/code/Mgt/DeveloperToolbar"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Mgt Developer Toolbar",
+            "support": {
+                "source": "https://github.com/mgtcommerce/Mgt_Developertoolbar/tree/master",
+                "issues": "https://github.com/mgtcommerce/Mgt_Developertoolbar/issues"
+            },
+            "time": "2016-06-24 11:51:56"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.16.0",
             "source": {
@@ -5629,22 +5666,30 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
+                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
                 "shasum": ""
             },
+            "require": {
+                "php": ">=5.3.0"
+            },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
-                    "Psr\\Log\\": ""
+                "psr-4": {
+                    "Psr\\Log\\": "Psr/Log/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5658,12 +5703,13 @@
                 }
             ],
             "description": "Common interface for logging libraries",
+            "homepage": "https://github.com/php-fig/log",
             "keywords": [
                 "log",
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2016-09-19 16:02:08"
         },
         {
             "name": "seld/cli-prompt",
@@ -5715,16 +5761,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "66834d3e3566bb5798db7294619388786ae99394"
+                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/66834d3e3566bb5798db7294619388786ae99394",
-                "reference": "66834d3e3566bb5798db7294619388786ae99394",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e827b5254d3e58c736ea2c5616710983d80b0b70",
+                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70",
                 "shasum": ""
             },
             "require": {
@@ -5757,7 +5803,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2015-11-21 02:21:41"
+            "time": "2016-09-14 15:17:56"
         },
         {
             "name": "seld/phar-utils",
@@ -5916,7 +5962,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -5976,16 +6022,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "ab4c3f085c8f5a56536845bf985c4cef30bf75fd"
+                "reference": "44b499521defddf2eae17a18c811bbdae4f98bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/ab4c3f085c8f5a56536845bf985c4cef30bf75fd",
-                "reference": "ab4c3f085c8f5a56536845bf985c4cef30bf75fd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/44b499521defddf2eae17a18c811bbdae4f98bdf",
+                "reference": "44b499521defddf2eae17a18c811bbdae4f98bdf",
                 "shasum": ""
             },
             "require": {
@@ -6021,7 +6067,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-20 05:41:28"
+            "time": "2016-09-06 10:55:00"
         },
         {
             "name": "symfony/finder",
@@ -6074,16 +6120,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "162d37eb3396225f31574b69a453118e5bc313d2"
+                "reference": "05a03ed27073638658cab9405d99a67dd1014987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/162d37eb3396225f31574b69a453118e5bc313d2",
-                "reference": "162d37eb3396225f31574b69a453118e5bc313d2",
+                "url": "https://api.github.com/repos/symfony/process/zipball/05a03ed27073638658cab9405d99a67dd1014987",
+                "reference": "05a03ed27073638658cab9405d99a67dd1014987",
                 "shasum": ""
             },
             "require": {
@@ -6119,7 +6165,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-08-16 14:56:08"
+            "time": "2016-09-06 10:55:00"
         },
         {
             "name": "tedivm/jshrink",
@@ -7768,16 +7814,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.12.0",
+            "version": "v1.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "ddac737e1c06a310a0bb4b3da755a094a31a916a"
+                "reference": "baa7112bef3b86c65fcfaae9a7a50436e3902b41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ddac737e1c06a310a0bb4b3da755a094a31a916a",
-                "reference": "ddac737e1c06a310a0bb4b3da755a094a31a916a",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/baa7112bef3b86c65fcfaae9a7a50436e3902b41",
+                "reference": "baa7112bef3b86c65fcfaae9a7a50436e3902b41",
                 "shasum": ""
             },
             "require": {
@@ -7823,7 +7869,7 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "abandoned": "friendsofphp/php-cs-fixer",
-            "time": "2016-08-17 00:17:27"
+            "time": "2016-09-27 07:57:59"
         },
         {
             "name": "lusitanian/oauth",
@@ -8856,7 +8902,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -8909,16 +8955,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "e0eeba7d1141d9ed64e3d412ab8fd166d612190b"
+                "reference": "0a732a9cafc30e54077967da4d019e1d618a8cb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/e0eeba7d1141d9ed64e3d412ab8fd166d612190b",
-                "reference": "e0eeba7d1141d9ed64e3d412ab8fd166d612190b",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/0a732a9cafc30e54077967da4d019e1d618a8cb9",
+                "reference": "0a732a9cafc30e54077967da4d019e1d618a8cb9",
                 "shasum": ""
             },
             "require": {
@@ -8968,7 +9014,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-08-23 13:37:31"
+            "time": "2016-09-06 23:19:39"
         },
         {
             "name": "symfony/stopwatch",
@@ -9021,7 +9067,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.10",
+            "version": "v2.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -9113,6 +9159,7 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
+        "mgtcommerce/module-mgtdevelopertoolbar": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
