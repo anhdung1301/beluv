@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e1b03d9b82d24da27d519cb0d8cc2f41",
-    "content-hash": "6e8ad6929e39ad4c2415044b655fd7d2",
+    "hash": "75f583680bb007f42736633f72c1e9b7",
+    "content-hash": "81fdc7df641d6670e07787c300462bc9",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -5342,43 +5342,6 @@
             "time": "2015-10-29 14:34:55"
         },
         {
-            "name": "mgtcommerce/module-mgtdevelopertoolbar",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mgtcommerce/Mgt_Developertoolbar.git",
-                "reference": "9ad59f97e1780e7c22501974b7fbfb02868ec79f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mgtcommerce/Mgt_Developertoolbar/zipball/9ad59f97e1780e7c22501974b7fbfb02868ec79f",
-                "reference": "9ad59f97e1780e7c22501974b7fbfb02868ec79f",
-                "shasum": ""
-            },
-            "require": {
-                "magento/framework": "~100.1",
-                "php": "~5.6.0|~7.0.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "src/app/code/Mgt/DeveloperToolbar/registration.php"
-                ],
-                "psr-4": {
-                    "Mgt\\DeveloperToolbar\\": "src/app/code/Mgt/DeveloperToolbar"
-                }
-            },
-            "license": [
-                "proprietary"
-            ],
-            "description": "Mgt Developer Toolbar",
-            "support": {
-                "source": "https://github.com/mgtcommerce/Mgt_Developertoolbar/tree/master",
-                "issues": "https://github.com/mgtcommerce/Mgt_Developertoolbar/issues"
-            },
-            "time": "2016-06-24 11:51:56"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.16.0",
             "source": {
@@ -9159,7 +9122,6 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
-        "mgtcommerce/module-mgtdevelopertoolbar": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,

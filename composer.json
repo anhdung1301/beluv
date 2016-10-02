@@ -9,8 +9,7 @@
     ],
     "require": {
         "magento/product-community-edition": "2.1.1",
-        "composer/composer": "@alpha",
-        "mgtcommerce/module-mgtdevelopertoolbar": "dev-master"
+        "composer/composer": "@alpha"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
@@ -52,10 +51,6 @@
         "magento": {
             "type": "composer",
             "url": "https://repo.magento.com/"
-        },
-        "mgt-developertoolbar": {
-            "type": "vcs",
-            "url": "https://github.com/mgtcommerce/Mgt_Developertoolbar.git"
         }
     },
     "extra": {
