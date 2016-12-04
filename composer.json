@@ -10,7 +10,8 @@
     "require": {
         "magento/product-community-edition": "2.1.2",
         "composer/composer": "@alpha",
-        "vpietri/adm-quickdevbar": "dev-master"
+        "vpietri/adm-quickdevbar": "dev-master",
+        "msp/devtools": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
@@ -56,6 +57,10 @@
         "quickdevbar": {
             "type": "git",
             "url": "git@github.com:vpietri/magento2-developer-quickdevbar.git"
+        },
+        "msp-devtools": {
+            "type": "git",
+            "url": "git@github.com:magespecialist/m2-MSP_DevTools.git"
         }
     },
     "extra": {
