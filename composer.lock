@@ -5456,7 +5456,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:magespecialist/m2-MSP_DevTools.git",
-                "reference": "3e015a14f2ce010419216d42ff46fd84acfe6502"
+                "reference": "94b5c682f48945e71e92e6645c977278c59c8bab"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -5475,7 +5475,7 @@
             "license": [
                 "OSL 3.0"
             ],
-            "time": "2016-10-24 10:36:35"
+            "time": "2016-12-06 10:21:23"
         },
         {
             "name": "oyejorge/less.php",
