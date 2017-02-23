@@ -5501,7 +5501,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:magespecialist/m2-MSP_DevTools.git",
-                "reference": "7e202a0b798d84c86b4bd44b7cb698770b44f0fd"
+                "reference": "d387baca51671bc288bea8169541c36330871fcc"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -5520,27 +5520,27 @@
             "license": [
                 "OSL 3.0"
             ],
-            "time": "2017-02-03 12:03:03"
+            "time": "2017-02-22 16:37:30"
         },
         {
             "name": "oyejorge/less.php",
-            "version": "v1.7.0.10",
+            "version": "v1.7.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oyejorge/less.php.git",
-                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b"
+                "reference": "f1bccbee4bc9c7fdb6873e8c246063e01365a9a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/a1e2d3c20794b37ac4d0baeb24613e579584033b",
-                "reference": "a1e2d3c20794b37ac4d0baeb24613e579584033b",
+                "url": "https://api.github.com/repos/oyejorge/less.php/zipball/f1bccbee4bc9c7fdb6873e8c246063e01365a9a8",
+                "reference": "f1bccbee4bc9c7fdb6873e8c246063e01365a9a8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8.18"
+                "phpunit/phpunit": "~4.8.24"
             },
             "bin": [
                 "bin/lessc"
@@ -5570,9 +5570,13 @@
                 {
                     "name": "Josh Schmidt",
                     "homepage": "https://github.com/oyejorge"
+                },
+                {
+                    "name": "Michaël Marinetti",
+                    "homepage": "https://github.com/Asenar"
                 }
             ],
-            "description": "PHP port of the Javascript version of LESS http://lesscss.org",
+            "description": "PHP port of the Javascript version of LESS http://lesscss.org (Originally maintained by Josh Schmidt)",
             "homepage": "http://lessphp.gpeasy.com",
             "keywords": [
                 "css",
@@ -5582,7 +5586,7 @@
                 "php",
                 "stylesheet"
             ],
-            "time": "2015-12-30T05:47:36+00:00"
+            "time": "2017-02-23T14:18:55+00:00"
         },
         {
             "name": "pelago/emogrifier",
@@ -6139,7 +6143,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -8340,16 +8344,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
+                "reference": "284fb0679dd25fb5ffb56dad92c72860c0a22f1b",
                 "shasum": ""
             },
             "require": {
@@ -8385,7 +8389,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2016-11-15T14:06:22+00:00"
+            "time": "2017-02-23T06:14:45+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -9124,7 +9128,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.2.3",
+            "version": "v3.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
