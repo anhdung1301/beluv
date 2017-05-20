@@ -11,7 +11,11 @@
         "magento/product-community-edition": "2.1.6",
         "composer/composer": "@alpha",
         "vpietri/adm-quickdevbar": "dev-master",
-        "msp/devtools": "dev-master"
+        "neklo/core": "2.0.1",
+        "neklo/reindexer": "1.0.1",
+        "amasty/base": "1.0.3",
+        "amasty/ogrid": "1.1.3",
+        "amasty/module-smtp-email-settings": "1.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
@@ -58,9 +62,25 @@
             "type": "git",
             "url": "git@github.com:vpietri/magento2-developer-quickdevbar.git"
         },
-        "msp-devtools": {
+        "neklo-core": {
             "type": "git",
-            "url": "git@github.com:magespecialist/m2-MSP_DevTools.git"
+            "url": "ssh://git@stash.ecommage.com:7999/m2e/niklo_core.git"
+        },
+        "neklo-reindexer": {
+            "type": "git",
+            "url": "ssh://git@stash.ecommage.com:7999/m2e/niklo_reindexer.git"
+        },
+        "amasty-base": {
+            "type": "git",
+            "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_base.git"
+        },
+        "amasty-order-grid": {
+            "type": "git",
+            "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_ordergrid.git"
+        },
+        "amasty-smtp": {
+            "type": "git",
+            "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_smtp_email_settings.git"
         }
     },
     "extra": {

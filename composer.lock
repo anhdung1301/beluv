@@ -4,8 +4,88 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "199d59414dd5db47e24a90755a0297d7",
+    "content-hash": "9f361f8be907fa54c4bdd29380d10828",
     "packages": [
+        {
+            "name": "amasty/base",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_base.git",
+                "reference": "c1e5063f4680ab7848453f3b138c66e3b97805da"
+            },
+            "require": {
+                "php": "~5.6.5|7.0.2|7.0.4|~7.0.6"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Base\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Base",
+            "time": "2017-03-11T19:03:55+00:00"
+        },
+        {
+            "name": "amasty/module-smtp-email-settings",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_smtp_email_settings.git",
+                "reference": "a5ddd91bfc11872563db543e9ec951982ecf40f6"
+            },
+            "require": {
+                "amasty/base": "*",
+                "php": "~5.5.0|~5.6.0|~7.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Smtp\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "SMTP Email Settings by Amasty",
+            "time": "2016-08-10T19:03:28+00:00"
+        },
+        {
+            "name": "amasty/ogrid",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@stash.ecommage.com:7999/m2e/amasty_ordergrid.git",
+                "reference": "ffe641e828f0f3032ed7f403c9a56577d87df793"
+            },
+            "require": {
+                "amasty/base": "*",
+                "php": "~5.6.5|7.0.2|7.0.4|~7.0.6"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Ogrid\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Extended Order Grid By Amasty",
+            "time": "2017-05-20T16:59:59+00:00"
+        },
         {
             "name": "braintree/braintree_php",
             "version": "3.7.0",
@@ -5467,21 +5547,14 @@
             "time": "2015-08-09T17:44:44+00:00"
         },
         {
-            "name": "msp/common",
-            "version": "0.1.4",
+            "name": "neklo/core",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/magespecialist/m2-MSP_Common.git",
-                "reference": "fb890130e39db9c495530e57167a952c66eb5934"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/magespecialist/m2-MSP_Common/zipball/fb890130e39db9c495530e57167a952c66eb5934",
-                "reference": "fb890130e39db9c495530e57167a952c66eb5934",
-                "shasum": ""
+                "url": "ssh://git@stash.ecommage.com:7999/m2e/niklo_core.git",
+                "reference": "7999eac0771ce768ce9626f1e49aa52711e451e0"
             },
             "require": {
-                "magento/magento-composer-installer": "*",
                 "php": "~5.5.0|~5.6.0|~7.0.0"
             },
             "type": "magento2-module",
@@ -5490,26 +5563,22 @@
                     "registration.php"
                 ],
                 "psr-4": {
-                    "MSP\\Common\\": ""
+                    "Neklo\\Core\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "OSL 3.0"
-            ],
-            "time": "2017-05-07T15:58:52+00:00"
+            "description": "N/A",
+            "time": "2017-05-19T15:41:19+00:00"
         },
         {
-            "name": "msp/devtools",
-            "version": "dev-master",
+            "name": "neklo/reindexer",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:magespecialist/m2-MSP_DevTools.git",
-                "reference": "6bdf5dc44a017de39f7b62512f201cc55b57babe"
+                "url": "ssh://git@stash.ecommage.com:7999/m2e/niklo_reindexer.git",
+                "reference": "549df2c51ce2a3488899e9f7f8323cf6ad5f4336"
             },
             "require": {
-                "magento/magento-composer-installer": "*",
-                "msp/common": "*",
+                "neklo/core": "~2.0.0",
                 "php": "~5.5.0|~5.6.0|~7.0.0"
             },
             "type": "magento2-module",
@@ -5518,13 +5587,11 @@
                     "registration.php"
                 ],
                 "psr-4": {
-                    "MSP\\DevTools\\": ""
+                    "Neklo\\Reindexer\\": ""
                 }
             },
-            "license": [
-                "OSL 3.0"
-            ],
-            "time": "2017-04-03 10:23:46"
+            "description": "Manual reindex plugin",
+            "time": "2017-05-19T15:43:30+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -9278,7 +9345,6 @@
     "stability-flags": {
         "composer/composer": 15,
         "vpietri/adm-quickdevbar": 20,
-        "msp/devtools": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
