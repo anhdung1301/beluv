@@ -6214,7 +6214,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.3.3",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -6406,7 +6406,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:vpietri/magento2-developer-quickdevbar.git",
-                "reference": "25e97841b951d8f9dd0d2d57f964486bc891496f"
+                "reference": "302740c2e4e8ad725e8a9bb441ad026a7f4e29a7"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -6433,7 +6433,7 @@
                 }
             ],
             "description": "QuickDevBar is a developer toolbar for magento 2",
-            "time": "2017-01-18 17:17:07"
+            "time": "2017-07-07 16:58:15"
         },
         {
             "name": "zendframework/zend-code",
@@ -6597,7 +6597,7 @@
         },
         {
             "name": "zendframework/zend-crypt",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-crypt.git",
@@ -6700,7 +6700,7 @@
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-escaper.git",
@@ -6847,7 +6847,7 @@
         },
         {
             "name": "zendframework/zend-form",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-form.git",
@@ -6918,7 +6918,7 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
@@ -7033,7 +7033,7 @@
         },
         {
             "name": "zendframework/zend-inputfilter",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-inputfilter.git",
@@ -7354,7 +7354,7 @@
         },
         {
             "name": "zendframework/zend-mvc",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mvc.git",
@@ -7794,7 +7794,7 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
@@ -9204,7 +9204,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.3.3",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
