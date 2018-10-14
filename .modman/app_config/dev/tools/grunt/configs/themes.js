@@ -1,5 +1,5 @@
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -31,9 +31,9 @@ module.exports = {
         ],
         dsl: 'less'
     },
-    ecommage: {
+    luma: {
         area: 'frontend',
-        name: 'Ecommage/default',
+        name: 'Magento/luma',
         locale: 'en_US',
         files: [
             'css/styles-m',
