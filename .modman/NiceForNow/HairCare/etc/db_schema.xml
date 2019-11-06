@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="custom_condition" resource="default" engine="innodb" comment="Custom Condition">
+        <column xsi:type="int" name="condition_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Condition Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Custom Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="condition_id"/>
+        </constraint>
+    </table>
+    <table name="custom_sub_condition" resource="default" engine="innodb" comment="Custom SubCondition">
+        <column xsi:type="int" name="sub_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Sub Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Custom Name"/>
+        <column xsi:type="int" name="condition_id" nullable="false"  comment="Condition Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="sub_id"/>
+        </constraint>
+    </table>
+    <table name="custom_beluv" resource="default" engine="innodb" comment="Custom Beluv">
+        <column xsi:type="int" name="beluv_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Beluv Id"/>
+        <column xsi:type="int" name="condition_id" nullable="false"  comment="Condition Id"/>
+        <column xsi:type="int" name="sub_id" nullable="false"  comment="Sub Id"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Custom type"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Custom title"/>
+        <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Custom description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="beluv_id"/>
+        </constraint>
+    </table>
+</schema>

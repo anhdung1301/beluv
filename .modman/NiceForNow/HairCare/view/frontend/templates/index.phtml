@@ -1,0 +1,110 @@
+<?php
+/**
+ * @var  \NiceForNow\HairCare\Block\Index $block
+ */
+$getCondition = $block->getCondition();
+$getSubCondition = $block->getSubCondition();
+$getPostCollection = $block->getPostCollection();
+
+?>
+<form id="form" name="form" method="post">
+    <label for=1">Điều kiện 1 </label>
+    <select name="condition1" id="condition1" class="form-control" id="">
+        <?php foreach ($getCondition as $select) {
+    ?>
+            <option value="<?= $select['condition_id']; ?>" check><?= $select['name']; ?></option>";
+            <?php
+}
+        ?>
+    </select>
+    <label for=1">Điều kiện 2 </label>
+    <select name="condition2" id="condition2" class="form-control" name>
+        <?php foreach ($getSubCondition as $select) {
+            ?>
+            <option value="<?= $select['sub_id']; ?>"><?= $select['name']; ?></option>";
+            <?php
+        }
+        ?>
+    </select>
+    <input type="submit" name="submit" value="Submit">
+</form>
+
+<form>
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($getPostCollection as $type => $item): ?>
+            <tr>
+                <td rowspan="<?=count($item)?>"><?= $type ?></td>
+
+            <?php foreach($item as $idx => $subitem): ?>
+                <?php if ($idx == 0): ?>
+
+                    <td><h4><?= $subitem['title'] ?></h4><?=$subitem['description']?></td>
+
+                <?php else: ?>
+
+                    <td><h4><?= $subitem['title'] ?></h4><?=$subitem['description']?></td>
+
+                <?php endif; ?>
+                    </tr>
+            <?php endforeach; ?>
+
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+</form>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+</style>
+
+<script>
+
+    require(["jquery"], function ($) {
+        $(document).ready(function () {
+            jQuery("#form").submit(function () {
+                // e.preventDefault();
+                // alert(123);
+                var condition1 = document.getElementById("condition1").value;
+                var condition2 = document.getElementById("condition2").value;
+                var url = "<?= $block->getUrl('/haircare/index/index')?>";
+
+                alert(url);
+                // $.ajax({
+                //     url: url,
+                //     type: 'POST',
+                //     dataType: 'json',
+                //     data: {
+                //         connten: connten,
+                //         id: id,
+                //         status: status
+                //     }
+                // })
+                //     .done(function () {
+                //
+                //     });
+
+
+
+            });
+        });
+    });
+
+</script>
