@@ -39,9 +39,9 @@ $getPostCollection = [];
 
                 <?php foreach ($item as $idx => $subitem): ?>
                     <?php if ($idx == 0): ?>
-                        <td><h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                        <td><h4><?=$subitem['title'] ?></h4><?= $subitem['description'] ?></td>
                     <?php else: ?>
-                        <td><h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                        <td><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
                     <?php endif; ?>
 
                 <?php endforeach; ?>
@@ -89,8 +89,7 @@ $getPostCollection = [];
                     // var array = $.map(result, function (value, index) {
                     //     return [value];
                     // });
-                    var array= $(result).serializeArray();
-                    console.log(array);
+
                     $('#container').append(
                         ` <thead>
                                 <tr>
@@ -99,23 +98,22 @@ $getPostCollection = [];
                                 </tr>
                          </thead>`);
 
+                    var a = "";
                     $.each( result, function(item,types) {
+                        a += `<tbody>
+                                <tr>
+                                    <td rowspan='2'>${item}</td>
+                                `
+
                         $.each(types, function (idx,subitem) {
 
-                            $('#container').append(
-                                `<tbody>
-                                <tr>
-                                    <td>${subitem['type']}</td>
+                         a +=`<td><h4>${subitem['title']}</h4> ${subitem['description']}</td>
                                 </tr>
-                        </tbody>`
-
-                            );
+                               <tbody>
+                               `;
                         })
                         });
-
-
-
-
+                    $('#container').html(a);
 
                 }).error(function (result) {
 
