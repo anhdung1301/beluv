@@ -6,31 +6,28 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\Result\JsonFactory;
 
 class index extends Action
 {
     protected $_dataPersistor;
     protected $_pageFactory;
+    protected $_jsonFactory;
 
     public function __construct(
         Context $context,
         DataPersistorInterface $dataPersistor,
-        PageFactory $pageFactory
+        PageFactory $pageFactory,
+        JsonFactory $jsonFactory
     ) {
         $this->_dataPersistor = $dataPersistor;
         $this->_pageFactory = $pageFactory;
+        $this->_jsonFactory = $jsonFactory;
         return parent::__construct($context);
     }
 
     public function execute()
     {
-        $post = $this->getRequest()->getPost();
-        $postArray = [
-            "condition1" => $post["condition1"],
-            "condition2" => $post["condition2"]
-        ];
-
-        $this->_dataPersistor->set('condition', $postArray);
-        return $this->_pageFactory->create();
+      return $this->_pageFactory->create();
     }
 }

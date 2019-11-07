@@ -4,8 +4,8 @@
  */
 $getCondition = $block->getCondition();
 $getSubCondition = $block->getSubCondition();
-$getPostCollection = $block->getPostCollection();
-
+//$getPostCollection = $block->getPostCollection("condition");
+$getPostCollection = [];
 ?>
 <form id="form" name="form" method="post">
     <label for=1">Điều kiện 1 </label>
@@ -26,40 +26,30 @@ $getPostCollection = $block->getPostCollection();
         }
         ?>
     </select>
-    <input type="submit" name="submit" value="Submit">
+    <input type="button" name="submit" id="btn-submit" value="Submit">
 </form>
+<div id="container"></div>
 
-<form>
     <table>
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Content</th>
-            </tr>
-        </thead>
+        <div id="myDIV">
         <tbody>
-            <?php foreach ($getPostCollection as $type => $item): ?>
+        <?php foreach ($getPostCollection as $type => $item): ?>
             <tr>
-                <td rowspan="<?=count($item)?>"><?= $type ?></td>
+                <td rowspan="<?= count($item) ?>"><?= $type ?></td>
 
-            <?php foreach($item as $idx => $subitem): ?>
-                <?php if ($idx == 0): ?>
+                <?php foreach ($item as $idx => $subitem): ?>
+                    <?php if ($idx == 0): ?>
+                        <td><h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                    <?php else: ?>
+                        <td><h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                    <?php endif; ?>
 
-                    <td><h4><?= $subitem['title'] ?></h4><?=$subitem['description']?></td>
-
-                <?php else: ?>
-
-                    <td><h4><?= $subitem['title'] ?></h4><?=$subitem['description']?></td>
-
-                <?php endif; ?>
-                    </tr>
-            <?php endforeach; ?>
-
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
-
-</form>
+</div>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -79,30 +69,57 @@ $getPostCollection = $block->getPostCollection();
 
     require(["jquery"], function ($) {
         $(document).ready(function () {
-            jQuery("#form").submit(function () {
-                // e.preventDefault();
-                // alert(123);
+            $("#myDIV").hide();
+
+            $("#btn-submit").on('click', function () {
                 var condition1 = document.getElementById("condition1").value;
                 var condition2 = document.getElementById("condition2").value;
-                var url = "<?= $block->getUrl('/haircare/index/index')?>";
+                var url = "<?= $block->getUrl('haircare/index/result')?>";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        isAjax: 1,
+                        condition1: condition1,
+                        condition2: condition2,
+                    }
+                }).done(function (result) {
+                    $("#myDIV").show();
+                    // var array = $.map(result, function (value, index) {
+                    //     return [value];
+                    // });
+                    var array= $(result).serializeArray();
+                    console.log(array);
+                    $('#container').append(
+                        ` <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Content</th>
+                                </tr>
+                         </thead>`);
 
-                alert(url);
-                // $.ajax({
-                //     url: url,
-                //     type: 'POST',
-                //     dataType: 'json',
-                //     data: {
-                //         connten: connten,
-                //         id: id,
-                //         status: status
-                //     }
-                // })
-                //     .done(function () {
-                //
-                //     });
+                    $.each( result, function(item,types) {
+                        $.each(types, function (idx,subitem) {
+
+                            $('#container').append(
+                                `<tbody>
+                                <tr>
+                                    <td>${subitem['type']}</td>
+                                </tr>
+                        </tbody>`
+
+                            );
+                        })
+                        });
 
 
 
+
+
+                }).error(function (result) {
+
+                });
             });
         });
     });

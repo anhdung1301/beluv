@@ -59,22 +59,4 @@ class Index extends Template
         return $data;
     }
 
-    public function getPostCollection()
-    {
-         $data = $this->_dataPersistor->get('condition');
-
-        $post = $this->_collectionFactory->create()
-            ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
-            ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
-        $postData = $post->getData();
-        $dataRenderer = [];
-        foreach ($postData as $datum) {
-            $dataRenderer[$datum['type']][] = $datum;
-        }
-        return $dataRenderer;
-    }
-    public function getUrl($route = '', $params = [])
-    {
-        return $this->_urlBuilder->getUrl($route, $params);
-    }
 }
