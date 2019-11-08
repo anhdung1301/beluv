@@ -58,5 +58,39 @@ class Index extends Template
         $data = $connection->fetchAll($select);
         return $data;
     }
+    public function getPostCollection()
+    {
+        $data = $this->_dataPersistor->get('condition');
+        $post = $this->_collectionFactory->create()
+            ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
+            ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
+        $postData = $post->getData();
+        $dataRenderer = [];
+        foreach ($postData as $datum) {
+            $dataRenderer[$datum['type']][] = $datum;
+        }
+        return $dataRenderer;
+    }
+    public function getUrl($route = '', $params = [])
+    {
+        return $this->_urlBuilder->getUrl($route, $params);
+    }
+    public function getType($name){
+        $type="";
+        switch ($name){
+            case 0:
+                $type="Tại Salon";
+                break;
+            case 1:
+                $type="Tại nhà hàng ngày";
+                break;
+            case 2:
+                $type="Tại nhà hàng tuần";
+                break;
+            default:
+                break;
+        }
+        return $type;
+    }
 
 }

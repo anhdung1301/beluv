@@ -4,8 +4,7 @@
  */
 $getCondition = $block->getCondition();
 $getSubCondition = $block->getSubCondition();
-//$getPostCollection = $block->getPostCollection("condition");
-$getPostCollection = [];
+$getPostCollection = $block->getPostCollection();
 ?>
 <form id="form" name="form" method="post">
     <label for=1">Điều kiện 1 </label>
@@ -26,99 +25,68 @@ $getPostCollection = [];
         }
         ?>
     </select>
-    <input type="button" name="submit" id="btn-submit" value="Submit">
+    <input type="submit" name="submit" value="Submit">
 </form>
-<div id="container"></div>
-    <table>
-        <div id="myDIV">
-        <tbody>
-        <?php foreach ($getPostCollection as $type => $item): ?>
-            <tr>
-                <td rowspan="<?= count($item) ?>"><?= $type ?></td>
+
+
+<div class="form-result">
+
+    <?php foreach ($getPostCollection as $type => $item): ?>
+        <div style="display: block" class="block-form">
+            <div class="big-title"><?= $block->getType($type) ?></div>
+            <div class="content">
 
                 <?php foreach ($item as $idx => $subitem): ?>
                     <?php if ($idx == 0): ?>
-                        <td><h4><?=$subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
                     <?php else: ?>
-                        <td><?= $subitem['title'] ?></h4><?= $subitem['description'] ?></td>
+                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
                     <?php endif; ?>
-
                 <?php endforeach; ?>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            </div>
+        </div>
+    <?php endforeach; ?>
 </div>
 
 
 <style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        margin-top: 30px;
+    .form-result {
+        display: flex;
+        justify-items: center;
     }
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: center;
-        padding: 8px;
+    .form-result .block-form {
+        width: calc(100% / 3);
     }
+
+    .form-result .big-title {
+        border: 1px solid #ddd;
+        border-right: 0;
+        padding: 10px;
+    }
+
+    .form-result .block-form:last-child .big-title {
+        border-right: 1px solid #ddd;
+    }
+
+    .form-result .content {
+        border: 1px solid #ddd;
+        border-right: 0;
+        border-top: 0;
+        height: 100%;
+        padding: 10px;
+        padding-top: 0;
+    }
+
+    .form-result .content h4 {
+        margin: 0;
+        padding-bottom: 10px;
+        padding-top: 25px;
+
+    }
+
+    .form-result .block-form:last-child .content {
+        border-right: 1px solid #ddd;
+    }
+
 </style>
-
-<script>
-
-    require(["jquery"], function ($) {
-        $(document).ready(function () {
-            $("#myDIV").hide();
-
-            $("#btn-submit").on('click', function () {
-                var condition1 = document.getElementById("condition1").value;
-                var condition2 = document.getElementById("condition2").value;
-                var url = "<?= $block->getUrl('haircare/index/result')?>";
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        isAjax: 1,
-                        condition1: condition1,
-                        condition2: condition2,
-                    }
-                }).done(function (result) {
-                    $("#myDIV").show();
-
-
-                    $('#container').append(
-                        ` <thead>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Content</th>
-                                </tr>
-                         </thead>`);
-
-                    var a = "";
-                    $.each( result, function(item,types) {
-                        a += `
-                                <tr>
-                                    <td rowspan='${types.length}'>${item} </td>
-                                `
-                        $.each(types, function (idx,subitem) {
-                         a +=`
-
-                                    <td><h4>${subitem['title']}</h4> ${subitem['description']}</td>
-                                </tr>
-
-                               `;
-                        })
-                        });
-                    $('#container').html(a);
-
-                }).error(function (result) {
-
-                });
-            });
-        });
-    });
-
-</script>

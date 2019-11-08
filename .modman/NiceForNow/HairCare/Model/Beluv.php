@@ -7,6 +7,9 @@ class Beluv extends \Magento\Framework\Model\AbstractModel implements \Magento\F
     protected $_cacheTag = 'custom_beluv';
 
     protected $_eventPrefix = 'custom_beluv';
+    const Salon = 0;
+    const Home_daily = 1;
+    const Home_Weekly=2;
 
     protected function _construct()
     {
@@ -23,5 +26,9 @@ class Beluv extends \Magento\Framework\Model\AbstractModel implements \Magento\F
         $values = [];
 
         return $values;
+    }
+    public function getAvailableType()
+    {
+        return [self::Salon => __('Tại salon'), self::Home_daily => __('Tại nhà hàng ngày'),self::Home_Weekly=>__('Tại nhà hàng tuần')];
     }
 }
