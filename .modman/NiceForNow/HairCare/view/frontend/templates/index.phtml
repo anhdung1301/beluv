@@ -29,7 +29,6 @@ $getPostCollection = [];
     <input type="button" name="submit" id="btn-submit" value="Submit">
 </form>
 <div id="container"></div>
-
     <table>
         <div id="myDIV">
         <tbody>
@@ -50,6 +49,8 @@ $getPostCollection = [];
         </tbody>
     </table>
 </div>
+
+
 <style>
     table {
         font-family: arial, sans-serif;
@@ -86,9 +87,7 @@ $getPostCollection = [];
                     }
                 }).done(function (result) {
                     $("#myDIV").show();
-                    // var array = $.map(result, function (value, index) {
-                    //     return [value];
-                    // });
+
 
                     $('#container').append(
                         ` <thead>
@@ -100,16 +99,16 @@ $getPostCollection = [];
 
                     var a = "";
                     $.each( result, function(item,types) {
-                        a += `<tbody>
+                        a += `
                                 <tr>
-                                    <td rowspan='2'>${item}</td>
+                                    <td rowspan='${types.length}'>${item} </td>
                                 `
-
                         $.each(types, function (idx,subitem) {
+                         a +=`
 
-                         a +=`<td><h4>${subitem['title']}</h4> ${subitem['description']}</td>
+                                    <td><h4>${subitem['title']}</h4> ${subitem['description']}</td>
                                 </tr>
-                               <tbody>
+
                                `;
                         })
                         });
