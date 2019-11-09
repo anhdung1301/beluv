@@ -8,36 +8,36 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">haircare_index_form.haircare_form_data_source</item>
+            <item name="provider" xsi:type="string">haircare_index_form.haircare_index_form_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Page Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
         <buttons>
-            <button name="save" class="Magento\Cms\Block\Adminhtml\Page\Edit\SaveButton"/>
-<!--            <button name="delete" class="Magento\Cms\Block\Adminhtml\Page\Edit\DeleteButton"/>-->
-<!--            <button name="back" class="Magento\Cms\Block\Adminhtml\Page\Edit\BackButton"/>-->
+            <button name="save" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\SaveButton"/>
+            <button name="delete" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\DeleteButton"/>-
+            <button name="back" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\BackButton"/>
         </buttons>
         <namespace>haircare_index_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>haircare_index_form.haircare_form_data_source</dep>
+            <dep>haircare_index_form.haircare_index_form_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="haircare_form_data_source">
+    <dataSource name="haircare_index_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="cms/page/save"/>
+            <submitUrl path="haircare/index/save"/>
         </settings>
-        <dataProvider class="Magento\Cms\Model\Page\DataProvider" name="haircare_form_data_source">
+        <dataProvider class="NiceForNow\HairCare\Model\Beluv\DataProvider" name="haircare_index_form_data_source">
             <settings>
-                <requestFieldName>page_id</requestFieldName>
-                <primaryFieldName>page_id</primaryFieldName>
+                <requestFieldName>beluv_id</requestFieldName>
+                <primaryFieldName>beluv_id</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
@@ -45,6 +45,105 @@
         <settings>
             <label/>
         </settings>
+        <field name="beluv_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>beluv_id</dataScope>
+            </settings>
+        </field>
+        <field name="condition_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">beluv</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Condition</label>
+                <dataScope>condition_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="NiceForNow\HairCare\Model\Source\Condition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="sub_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">beluv</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sub Condition</label>
+                <dataScope>sub_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="NiceForNow\HairCare\Model\Source\SubCondition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
 
+        <field name="type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">beluv</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">type</label>
+                <dataScope>type</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="NiceForNow\HairCare\Model\Source\BeluvType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="title" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Title</label>
+                <dataScope>title</dataScope>
+            </settings>
+        </field>
+        <field name="description" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+        </field>
     </fieldset>
 </form>

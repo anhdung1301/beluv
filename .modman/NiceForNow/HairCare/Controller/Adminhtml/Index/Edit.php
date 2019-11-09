@@ -4,17 +4,13 @@
  * See COPYING.txt for license details.
  */
 namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
-
 use Magento\Framework\App\Action\HttpGetActionInterface;
-
-
 class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements HttpGetActionInterface
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;
-
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
@@ -28,7 +24,6 @@ class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements Ht
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context, $coreRegistry);
     }
-
     /**
      * Edit CMS block
      *
@@ -38,9 +33,8 @@ class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements Ht
     public function execute()
     {
         // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('block_id');
-        $model = $this->_objectManager->create(\Magento\Cms\Model\Block::class);
-
+        $id = $this->getRequest()->getParam('beluv_id');
+        $model = $this->_objectManager->create(\NiceForNow\HairCare\Model\Beluv::class);
         // 2. Initial checking
         if ($id) {
             $model->load($id);
@@ -51,9 +45,7 @@ class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements Ht
                 return $resultRedirect->setPath('*/*/');
             }
         }
-
         $this->_coreRegistry->register('custom_beluv', $model);
-
         // 5. Build edit form
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
@@ -62,7 +54,7 @@ class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements Ht
             $id ? __('Edit HairCare') : __('New HairCare')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('HairCare'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New HairCare'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit HairCare') : __('New HairCare'));
         return $resultPage;
     }
 }

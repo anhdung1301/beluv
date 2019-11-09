@@ -9,6 +9,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
 use NiceForNow\HairCare\Model\BeluvFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
+
 use Magento\Rss\Model\UrlBuilder;
 class Index extends Template
 {
@@ -43,7 +44,6 @@ class Index extends Template
             ->from(
                 ['ce' => 'custom_condition']
             );
-//            ->where('condition_id = ?', 1);
         $data = $connection->fetchAll($select);
         return $data;
     }

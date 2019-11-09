@@ -5,7 +5,7 @@ use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
 
 
-class PageLayout implements OptionSourceInterface
+class BeluvType implements OptionSourceInterface
 {
 
     protected $pageLayoutBuilder;
@@ -22,9 +22,9 @@ class PageLayout implements OptionSourceInterface
     public function toOptionArray()
     {
         $configOptions=array(
-            1=>"publish",
-            2=>"draft",
-            3=>"non-publish"
+            0=>"Tại salon",
+            1=>"Tại nhà hàng ngày",
+            2=>"Tại nhà hàng tuần"
         );
         $options = [];
         foreach ($configOptions as $key => $value) {

@@ -61,7 +61,7 @@ class DataCondition extends Column
                     $dataSource['data']['items'][$key]['condition_id']=$idx['name'];
                 }
             }
-            foreach ($this->getSubCondition($item['condition_id']) as $idx)
+            foreach ($this->getSubCondition($item['sub_id']) as $idx)
             {
                 if($item['condition_id']=$idx['condition_id']){
                     $dataSource['data']['items'][$key]['sub_id']=$idx['name'];
