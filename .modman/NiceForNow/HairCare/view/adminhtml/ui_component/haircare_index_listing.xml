@@ -79,38 +79,32 @@
         </selectionsColumn>
         <column name="beluv_id">
             <settings>
-                <filter>textRange</filter>
+
                 <label translate="true">ID</label>
                 <sorting>asc</sorting>
             </settings>
         </column>
-        <column name="condition_id" class="NiceForNow\HairCare\Ui\Component\Listing\Columns\DataCondition">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Condition1</item>
-                </item>
-            </argument>
+        <column name="condition_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="NiceForNow\HairCare\Model\Source\Condition"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Condition</label>
+            </settings>
         </column>
-        <column name="sub_id" class="NiceForNow\HairCare\Ui\Component\Listing\Columns\DataCondition">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Condition2</item>
-                </item>
-            </argument>
+        <column name="sub_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="NiceForNow\HairCare\Model\Source\ShowSubCondition"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Condition 2</label>
+            </settings>
         </column>
         <column name="type" component="Magento_Ui/js/grid/columns/select">
             <settings>
