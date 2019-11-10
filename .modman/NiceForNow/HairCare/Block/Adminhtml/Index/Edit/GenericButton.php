@@ -36,20 +36,10 @@ class GenericButton
         $this->pageRepository = $pageRepository;
     }
 
-    /**
-     * Return CMS page ID
-     *
-     * @return int|null
-     */
-    public function getPageId()
+
+    public function getBeluvId()
     {
-        try {
-            return $this->pageRepository->getById(
-                $this->context->getRequest()->getParam('page_id')
-            )->getId();
-        } catch (NoSuchEntityException $e) {
-        }
-        return null;
+        return $a=$this->context->getRequest()->getParam('beluv_id');
     }
 
     /**
