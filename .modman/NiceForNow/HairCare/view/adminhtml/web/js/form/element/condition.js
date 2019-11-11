@@ -4,10 +4,13 @@ define([
     'Magento_Ui/js/form/element/select',
     'Magento_Ui/js/modal/modal',
     'mage/url'
-], function (_, uiRegistry, select, modal,url) {
+], function (_, uiRegistry, select, modal, url) {
     'use strict';
     return select.extend({
-
+        defaults: {
+            subOptions: null,
+            subElems: 'sub_id'
+        },
         /**
          * Init
          */
@@ -27,6 +30,7 @@ define([
         onUpdate: function (value) {
             this.fieldDepend(value);
             return this._super();
+
         },
 
         /**
@@ -34,6 +38,7 @@ define([
          *
          * @param {String} value
          */
+
         fieldDepend: function (value) {
             // var linkUrl = url.build('/rest/V1/haircare/post/');
             var linkUrl = "/admin/haircare/index/getAjax";
@@ -41,19 +46,20 @@ define([
             jQuery.ajax({
                 type: "POST",
                 url: linkUrl,
-                dataType : "json",
+                dataType: "json",
                 data: {
                     id: value,
                 },
                 success: function (data) {
-            console.log(data);
+                    subOptions:data;
 
                 },
                 error: function () {
 
                 }
-            })
+            });
             return this;
         }
+        
     });
 });

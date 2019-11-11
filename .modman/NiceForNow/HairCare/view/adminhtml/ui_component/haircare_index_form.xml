@@ -92,10 +92,6 @@
             <formElements>
                 <select>
                     <settings>
-<!--                        <filterBy>-->
-<!--                            <field>condition_id</field>-->
-<!--                            <target>${ $.provider }:${ $.parentScope }.country_id</target>-->
-<!--                        </filterBy>-->
                         <options class="NiceForNow\HairCare\Model\Source\SubCondition"/>
                     </settings>
                 </select>
