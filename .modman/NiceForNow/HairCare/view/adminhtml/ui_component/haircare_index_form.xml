@@ -5,7 +5,8 @@
  * See COPYING.txt for license details.
  */
 -->
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">haircare_index_form.haircare_index_form_data_source</item>
@@ -17,7 +18,7 @@
     <settings>
         <buttons>
             <button name="save" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\SaveButton"/>
-            <button name="delete" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\DeleteButton"/>-
+            <button name="delete" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\DeleteButton"/>
             <button name="back" class="NiceForNow\HairCare\Block\Adminhtml\Index\Edit\BackButton"/>
         </buttons>
         <namespace>haircare_index_form</namespace>
@@ -58,7 +59,7 @@
                 <dataScope>beluv_id</dataScope>
             </settings>
         </field>
-        <field name="condition_id" formElement="select">
+        <field name="condition_id" formElement="select" component="NiceForNow_HairCare/js/form/element/condition">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">beluv</item>
@@ -91,6 +92,10 @@
             <formElements>
                 <select>
                     <settings>
+<!--                        <filterBy>-->
+<!--                            <field>condition_id</field>-->
+<!--                            <target>${ $.provider }:${ $.parentScope }.country_id</target>-->
+<!--                        </filterBy>-->
                         <options class="NiceForNow\HairCare\Model\Source\SubCondition"/>
                     </settings>
                 </select>

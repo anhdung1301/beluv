@@ -7,10 +7,10 @@ use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Rss\Model\UrlBuilder;
 use NiceForNow\HairCare\Model\BeluvFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 
-use Magento\Rss\Model\UrlBuilder;
 class Index extends Template
 {
     protected $_dataFactory;
@@ -58,6 +58,7 @@ class Index extends Template
         $data = $connection->fetchAll($select);
         return $data;
     }
+
     public function getPostCollection()
     {
         $data = $this->_dataPersistor->get('condition');
@@ -71,26 +72,21 @@ class Index extends Template
         }
         return $dataRenderer;
     }
+
     public function getUrl($route = '', $params = [])
     {
         return $this->_urlBuilder->getUrl($route, $params);
     }
-    public function getType($name){
-        $type="";
-        switch ($name){
-            case 0:
-                $type="Tại Salon";
-                break;
-            case 1:
-                $type="Tại nhà hàng ngày";
-                break;
-            case 2:
-                $type="Tại nhà hàng tuần";
-                break;
-            default:
-                break;
+
+    public function getType($id)
+    {
+        $type = null;
+        $data = $this->_dataFactory->create()->getAvailableType();
+        foreach ($data as $item => $value) {
+            if ($item == $id) {
+                $type = $value;
+            }
         }
         return $type;
     }
-
 }

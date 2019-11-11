@@ -7,18 +7,6 @@ use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
 
 class BeluvType implements OptionSourceInterface
 {
-
-    protected $pageLayoutBuilder;
-
-    protected $options;
-
-
-    public function __construct(BuilderInterface $pageLayoutBuilder)
-    {
-        $this->pageLayoutBuilder = $pageLayoutBuilder;
-    }
-
-
     public function toOptionArray()
     {
         $configOptions=array(

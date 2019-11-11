@@ -12,4 +12,5 @@
             <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Beluv</argument>
         </arguments>
     </virtualType>
+    <preference for="NiceForNow\HairCare\Api\PostManagementInterface" type="NiceForNow\HairCare\Model\PostManagement"/>
 </config>

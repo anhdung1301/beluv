@@ -8,9 +8,9 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
 
-use NiceForNow\HairCare\Model\BeluvFactory;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use NiceForNow\HairCare\Model\BeluvFactory;
 
 class Save extends Action
 {
@@ -19,8 +19,7 @@ class Save extends Action
     public function __construct(
         Context $context,
         BeluvFactory $postFactory
-    )
-    {
+    ) {
         $this->_postFactory = $postFactory;
         parent::__construct($context);
     }
@@ -30,16 +29,30 @@ class Save extends Action
         $data = $this->getRequest()->getPostValue();
         $model = $this->_postFactory->create();
         $resultRedirect = $this->resultRedirectFactory->create();
-        //$this->processResultRedirect($model,$resultRedirect,$data);
+
         try {
-            $msg = __('add record success');
-            if ($id = !null) {
+            $id = $data['beluv_id'] ? $data['beluv_id'] : null;
+            if ($id == null) {
+                $msg = __('add record success');
+            }
+            else{
                 $msg = __('Edit record success');
             }
             if (isset($data['beluv_id']) && !$id) {
                 unset($data['beluv_id']);
             }
+            if ($id) {
                 $model->load($id);
+                $model->addData([
+                    "beluv_id" => $data['beluv_id'],
+                    "condition_id" => $data['condition_id'],
+                    "sub_id" => $data['sub_id'],
+                    "type" => $data['type'],
+                    "title" => $data['title'],
+                    "description" => $data['description'],
+                ]);
+                $model->save();
+            } else {
                 $model->addData([
                     "condition_id" => $data['condition_id'],
                     "sub_id" => $data['sub_id'],
@@ -48,8 +61,10 @@ class Save extends Action
                     "description" => $data['description'],
                 ]);
                 $model->save();
-            $model->setUrlKey($model->beforeSave());
+            }
+            $model->load($id);
 
+            $model->setUrlKey($model->beforeSave());
             $this->messageManager->addSuccessMessage($msg);
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
