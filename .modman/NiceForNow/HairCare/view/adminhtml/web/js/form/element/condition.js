@@ -1,39 +1,59 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 define([
-    'Magento_Ui/js/form/element/select'
-], function (Select) {
+    'underscore',
+    'uiRegistry',
+    'Magento_Ui/js/form/element/select',
+    'Magento_Ui/js/modal/modal',
+    'mage/url'
+], function (_, uiRegistry, select, modal,url) {
     'use strict';
+    return select.extend({
 
-    return Select.extend({
-        defaults: {
-            subOptions: null,
-            subElems: 'sub_id'
-        },
+        /**
+         * Init
+         */
         initialize: function () {
-            this.getAjaxSub();
+            this._super();
+            // var Sub = uiRegistry.get('index = sub_id');
+            // Sub.hide();
+            this.fieldDepend(this.value());
+            return this;
+        },
+
+        /**
+         * On value change handler.
+         *
+         * @param {String} value
+         */
+        onUpdate: function (value) {
+            this.fieldDepend(value);
             return this._super();
         },
-        getAjaxSub: function () {
+
+        /**
+         * Update field dependency
+         *
+         * @param {String} value
+         */
+        fieldDepend: function (value) {
+            // var linkUrl = url.build('/rest/V1/haircare/post/');
+            var linkUrl = "/admin/haircare/index/getAjax";
 
             jQuery.ajax({
-                url: "/rest/V1/haircare/post/",
-                type: "post",
+                type: "POST",
+                url: linkUrl,
+                dataType : "json",
                 data: {
-                    id: 1,
+                    id: value,
                 },
                 success: function (data) {
-                    console.log(data);
+            console.log(data);
+
                 },
                 error: function () {
-                    console.log("23123");
+
                 }
             })
-        },
-
-
+            return this;
+        }
     });
 });

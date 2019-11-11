@@ -70,6 +70,7 @@ class Index extends Template
         foreach ($postData as $datum) {
             $dataRenderer[$datum['type']][] = $datum;
         }
+        $this->_dataPersistor->clear('condition');
         return $dataRenderer;
     }
 

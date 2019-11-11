@@ -37,7 +37,7 @@ class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements 
             }
         }
         // display error message
-        $this->messageManager->addErrorMessage(__('We can\'t find a block to delete.'));
+        $this->messageManager->addErrorMessage(__('We can\'t find a Condition to delete.'));
         // go to grid
         return $resultRedirect->setPath('*/*/index');
     }

@@ -24,12 +24,8 @@ class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements Ht
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context, $coreRegistry);
     }
-    /**
-     * Edit CMS block
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     */
+
+
     public function execute()
     {
         // 1. Get ID and create model
