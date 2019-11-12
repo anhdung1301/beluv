@@ -6,11 +6,11 @@
  * Time: 5:24 PM
  */
 
-namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
+namespace NiceForNow\HairCare\Controller\Adminhtml\Condition;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use NiceForNow\HairCare\Model\BeluvFactory;
+use NiceForNow\HairCare\Model\ConditionFactory;
 
 class Save extends Action
 {
@@ -18,7 +18,7 @@ class Save extends Action
 
     public function __construct(
         Context $context,
-        BeluvFactory $postFactory
+        ConditionFactory $postFactory
     ) {
         $this->_postFactory = $postFactory;
         parent::__construct($context);
@@ -30,34 +30,26 @@ class Save extends Action
         $model = $this->_postFactory->create();
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
-            $id = $data['beluv_id'] ? $data['beluv_id'] : null;
+            $id = $data['condition_id'] ? $data['condition_id'] : null;
             if ($id == null) {
                 $msg = __('add record success');
             }
             else{
                 $msg = __('Edit record success');
             }
-            if (isset($data['beluv_id']) && !$id) {
-                unset($data['beluv_id']);
+            if (isset($data['condition_id']) && !$id) {
+                unset($data['condition_id']);
             }
             if ($id) {
                 $model->load($id);
                 $model->addData([
-                    "beluv_id" => (int)$data['beluv_id'],
                     "condition_id" => (int)$data['condition_id'],
-                    "sub_id" => (int)$data['sub_id'],
-                    "type" => (int)$data['type'],
-                    "title" => $data['title'],
-                    "description" => $data['description'],
+                    "name" => $data['name'],
                 ]);
                 $model->save();
             } else {
                 $model->addData([
-                    "condition_id" => (int)$data['condition_id'],
-                    "sub_id" => (int)$data['sub_id'],
-                    "type" => (int)$data['type'],
-                    "title" => $data['title'],
-                    "description" => $data['description'],
+                    "name" => $data['name'],
                 ]);
                 $model->save();
             }
@@ -69,7 +61,7 @@ class Save extends Action
             $this->messageManager->addErrorMessage($e->getMessage());
         }
         if ($this->getRequest()->getParam('back', false) === 'duplicate') {
-            return $resultRedirect->setPath('*/*/edit', ['beluv_id' => $id, 'duplicate' => '0']);
+            return $resultRedirect->setPath('*/*/edit', ['condition_id' => $id, 'duplicate' => '0']);
         } else {
             return $resultRedirect->setPath('*/*/index');
         }

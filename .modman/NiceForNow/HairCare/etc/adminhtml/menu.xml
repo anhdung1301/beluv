@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="NiceForNow_HairCare::haircare" title="94Now" module="NiceForNow_HairCare" sortOrder="51" resource="NiceForNow_HairCare::haircare" />
-        <add id="NiceForNow_HairCare::index" title="HairCare" module="NiceForNow_HairCare" sortOrder="10" action="haircare/index/index" resource="NiceForNow_HairCare::index" parent="NiceForNow_HairCare::haircare" />
+        <add id="NiceForNow_HairCare::maintext" title="94Now" module="NiceForNow_HairCare" sortOrder="51" resource="NiceForNow_HairCare::maintext"   parent="Magento_Backend::content"/>
+        <add id="NiceForNow_HairCare::custom_beluv" title="HairCare" module="NiceForNow_HairCare" sortOrder="10" action="haircare/index/index" resource="NiceForNow_HairCare::custom_beluv" parent="NiceForNow_HairCare::maintext" />
+        <add id="NiceForNow_HairCare::custom_condition" title="Condition" module="NiceForNow_HairCare" sortOrder="20" action="haircare/condition/index" resource="NiceForNow_HairCare::custom_beluv" parent="NiceForNow_HairCare::maintext" />
     </menu>
 </config>
+

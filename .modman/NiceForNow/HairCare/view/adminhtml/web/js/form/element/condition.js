@@ -1,24 +1,26 @@
 define([
+    'jquery',
     'underscore',
     'uiRegistry',
     'Magento_Ui/js/form/element/select',
-    'Magento_Ui/js/modal/modal',
-    'mage/url'
-], function (_, uiRegistry, select, modal, url) {
+    'mage/url',
+    'uiRegistry'
+], function ($, _, uiRegistry, select) {
     'use strict';
     return select.extend({
-        defaults: {
-            subOptions: null,
-            subElems: 'sub_id'
-        },
-        /**
-         * Init
-         */
+        // defaults: {
+        //     listens: {
+        //         '${ $.provider }:data.sub_id': 'setDifferedFromDefault'
+        //     }
+        // },
+        // setDifferedFromDefault: function (value) {
+        //     console.log(value);
+        // },
         initialize: function () {
             this._super();
-            // var Sub = uiRegistry.get('index = sub_id');
-            // Sub.hide();
-            this.fieldDepend(this.value());
+
+            var subSelectedId = this.source.data['sub_id'];
+            this.getSubConditions(parseInt(this.initialValue), subSelectedId);
             return this;
         },
 
@@ -28,38 +30,38 @@ define([
          * @param {String} value
          */
         onUpdate: function (value) {
-            this.fieldDepend(value);
-            return this._super();
-
+            this.getSubConditions(parseInt(value));
+            return this;
         },
 
         /**
-         * Update field dependency
          *
-         * @param {String} value
+         * @param value
+         * @returns {exports}
          */
 
-        fieldDepend: function (value) {
-            // var linkUrl = url.build('/rest/V1/haircare/post/');
-            var linkUrl = "/admin/haircare/index/getAjax";
+        getSubConditions: function (value, subSelectedId = null) {
 
-            jQuery.ajax({
+            var linkUrl = "/admin/haircare/index/getAjax";
+            $.ajax({
                 type: "POST",
                 url: linkUrl,
                 dataType: "json",
                 data: {
-                    id: value,
+                    id: value
                 },
                 success: function (data) {
-                    subOptions:data;
-
+                    let sub = uiRegistry.get('index = sub_id');
+                    sub.options(data);
+                    if (subSelectedId !== null) {
+                        sub.value(subSelectedId);
+                    }
                 },
                 error: function () {
-
                 }
             });
             return this;
         }
-        
+
     });
 });

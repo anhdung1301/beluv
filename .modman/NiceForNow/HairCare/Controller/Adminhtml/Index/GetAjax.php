@@ -26,7 +26,6 @@ class GetAjax extends Action
 
     public function execute()
     {
-        $result = $this->request->getParams();
         $resultJson = $this->resultJsonFactory->create();
         $id = $this->getRequest()->getPost('id');
 
@@ -35,11 +34,10 @@ class GetAjax extends Action
         foreach ($configOptions as $key => $value) {
             $options[] = [
                 'label' => $value["name"],
-                'value' => $value["sub_id"],
+                'value' => $value["sub_id"]
             ];
         }
         $this->options = $options;
-
         return $resultJson->setData($options);
     }
 

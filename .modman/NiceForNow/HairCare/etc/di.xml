@@ -3,6 +3,7 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="nicefornow_haircare_index_listing_data_source" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Beluv\Collection</item>
+                <item name="nicefornow_haircare_condition_listing_data_source" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Condition\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -12,5 +13,10 @@
             <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Beluv</argument>
         </arguments>
     </virtualType>
-    <preference for="NiceForNow\HairCare\Api\PostManagementInterface" type="NiceForNow\HairCare\Model\PostManagement"/>
+    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\Condition\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">custom_condition</argument>
+            <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Condition</argument>
+        </arguments>
+    </virtualType>
 </config>

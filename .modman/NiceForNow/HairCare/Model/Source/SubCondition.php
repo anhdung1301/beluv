@@ -21,7 +21,7 @@ class SubCondition implements OptionSourceInterface
     {
         $id = $this->_dataPersistor->get('id_sub');
 
-        $configOptions=$this->getSubCondition($id);
+        $configOptions=$this->getSubCondition();
         $options = [];
         foreach ($configOptions as $key => $value) {
             $options[] = [
@@ -33,14 +33,13 @@ class SubCondition implements OptionSourceInterface
         $this->options = $options;
         return $options;
     }
-    public function getSubCondition($subCondition)
+    public function getSubCondition()
     {
         $connection = $this->_resourceConnection->getConnection();
         $select = $connection->select()
             ->from(
                 ['ce' => 'custom_sub_condition']
-            )
-            ->where('condition_id = ?', $subCondition);
+            );
         $data = $connection->fetchAll($select);
         return $data;
 
