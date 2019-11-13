@@ -85,15 +85,4 @@ class Index extends Template
         }
         return $type;
     }
-    public function getSubConditionByID(){
-        $id = $this->_dataPersistor->get('id') ?$this->_dataPersistor->get('id'): 1;
-        foreach ($id as $key => $value){
-            $data = $this->_collectionSubConditionFactory->create()
-            ->addFieldToFilter('condition_id', ['eq' =>'1']);
-        return $data->getData();
-
-        }
-    }
-
-
 }

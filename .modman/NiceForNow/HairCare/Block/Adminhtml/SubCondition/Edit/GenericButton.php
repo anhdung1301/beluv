@@ -38,7 +38,7 @@ class GenericButton
 
     public function getSubConditionId()
     {
-        return $a=$this->context->getRequest()->getParam('sub_id');
+        return $this->context->getRequest()->getParam('sub_id');
     }
 
     /**

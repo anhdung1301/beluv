@@ -29,14 +29,11 @@ class Save extends Action
         $data = $this->getRequest()->getPostValue();
         $model = $this->_postFactory->create();
         $resultRedirect = $this->resultRedirectFactory->create();
+
         try {
             $id = $data['condition_id'] ? $data['condition_id'] : null;
-            if ($id == null) {
-                $msg = __('add record success');
-            }
-            else{
-                $msg = __('Edit record success');
-            }
+            $id == null ? $msg = __('add record success') : $msg = __('Edit record success');
+
             if (isset($data['condition_id']) && !$id) {
                 unset($data['condition_id']);
             }
@@ -47,7 +44,7 @@ class Save extends Action
                     "name" => $data['name'],
                 ]);
                 $model->save();
-            } else {
+            }{
                 $model->addData([
                     "name" => $data['name'],
                 ]);
@@ -62,7 +59,8 @@ class Save extends Action
         }
         if ($this->getRequest()->getParam('back', false) === 'duplicate') {
             return $resultRedirect->setPath('*/*/edit', ['condition_id' => $id, 'duplicate' => '0']);
-        } else {
+        }
+        {
             return $resultRedirect->setPath('*/*/index');
         }
     }

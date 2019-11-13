@@ -17,7 +17,7 @@ class SubCondition implements OptionSourceInterface
     {
         $configOptions=$this->_index->getSubCondition();
         $options = [];
-        foreach ($configOptions as $key => $value) {
+        foreach ($configOptions as  $value) {
             $options[] = [
                 'label' => $value["name"],
                 'value' => $value["sub_id"],

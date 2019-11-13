@@ -39,7 +39,7 @@ class GenericButton
 
     public function getConditionId()
     {
-        return $a=$this->context->getRequest()->getParam('condition_id');
+        return $this->context->getRequest()->getParam('condition_id');
     }
 
     /**

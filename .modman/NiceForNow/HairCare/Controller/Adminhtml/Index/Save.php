@@ -31,12 +31,7 @@ class Save extends Action
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
             $id = $data['beluv_id'] ? $data['beluv_id'] : null;
-            if ($id == null) {
-                $msg = __('add record success');
-            }
-            else{
-                $msg = __('Edit record success');
-            }
+            $id == null ? $msg = __('add record success') : $msg = __('Edit record success');
             if (isset($data['beluv_id']) && !$id) {
                 unset($data['beluv_id']);
             }
@@ -51,7 +46,7 @@ class Save extends Action
                     "description" => $data['description'],
                 ]);
                 $model->save();
-            } else {
+            }  {
                 $model->addData([
                     "condition_id" => (int)$data['condition_id'],
                     "sub_id" => (int)$data['sub_id'],
@@ -70,7 +65,7 @@ class Save extends Action
         }
         if ($this->getRequest()->getParam('back', false) === 'duplicate') {
             return $resultRedirect->setPath('*/*/edit', ['beluv_id' => $id, 'duplicate' => '0']);
-        } else {
+        }{
             return $resultRedirect->setPath('*/*/index');
         }
     }

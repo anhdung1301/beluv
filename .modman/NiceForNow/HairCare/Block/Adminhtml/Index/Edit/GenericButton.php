@@ -39,7 +39,7 @@ class GenericButton
 
     public function getBeluvId()
     {
-        return $a=$this->context->getRequest()->getParam('beluv_id');
+        return $this->context->getRequest()->getParam('beluv_id');
     }
 
     /**
