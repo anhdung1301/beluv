@@ -58,7 +58,8 @@ class Save extends Action
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
-        if ($this->getRequest()->getParam('back', false) === 'duplicate') {
+
+        if ($this->getRequest()->getParam('back')) {
             return $resultRedirect->setPath('*/*/edit', ['sub_id' => $id, 'duplicate' => '0']);
         }{
             return $resultRedirect->setPath('*/*/index');

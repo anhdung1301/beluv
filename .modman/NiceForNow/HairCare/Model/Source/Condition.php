@@ -2,35 +2,44 @@
 
 namespace NiceForNow\HairCare\Model\Source;
 
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Data\OptionSourceInterface;
-use NiceForNow\HairCare\Block\Index;
+use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
 
+/**
+ * Class Condition
+ * @package NiceForNow\HairCare\Model\Source
+ */
 class Condition implements OptionSourceInterface
 {
-    protected $_resourceConnection;
-    protected $options;
-    protected $_index;
+    /**
+     * @var CollectionFactory
+     */
+    protected $collectionFactory;
+    /**
+     * @var null
+     */
+    protected $options = null;
 
-    public function __construct( ResourceConnection $resourceConnection, Index $index)
+    /**
+     * Condition constructor.
+     * @param CollectionFactory $collectionFactory
+     */
+    public function __construct(CollectionFactory $collectionFactory)
     {
-        $this->_resourceConnection = $resourceConnection;
-        $this->_index = $index;
+        $this->collectionFactory = $collectionFactory;
     }
 
+    /**
+     * @return array|null
+     */
     public function toOptionArray()
     {
-        $configOptions = $this->_index->getCondition();
-
-        $options = [];
-        foreach ($configOptions as $value) {
-            $options[] = [
-                'label' => $value["name"],
-                'value' => $value["condition_id"],
-            ];
+        /** @var \NiceForNow\HairCare\Model\ResourceModel\Condition\Collection $configOptions */
+        $configOptions = $this->collectionFactory->create();
+        if (empty($this->options)) {
+            $this->options = $configOptions->toOptionArray();
         }
-        $this->options = $options;
 
-        return $options;
+        return $this->options;
     }
 }

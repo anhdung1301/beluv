@@ -19,7 +19,9 @@
         <buttons>
             <button name="save" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\SaveButton"/>
             <button name="delete" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\SaveAndContinueButton"/>
             <button name="back" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\BackButton"/>
+
         </buttons>
         <namespace>haircare_subcondition_form</namespace>
         <dataScope>data</dataScope>
