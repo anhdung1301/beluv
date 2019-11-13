@@ -2,8 +2,6 @@
 namespace  NiceForNow\HairCare\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
-
 
 class BeluvType implements OptionSourceInterface
 {

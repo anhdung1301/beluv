@@ -3,50 +3,9 @@
  * @var  \NiceForNow\HairCare\Block\Index $block
  */
 $getCondition = $block->getCondition();
-$getSubCondition = $block->getSubCondition();
+$getSubCondition = $block->getSubConditionByID();
 $getPostCollection = $block->getPostCollection();
 ?>
-<form id="form" name="form" method="post">
-    <label for=1">Điều kiện 1 </label>
-    <select name="condition1" id="condition1" class="form-control" id="">
-        <?php foreach ($getCondition as $select) {
-    ?>
-            <option value="<?= $select['condition_id']; ?>" check><?= $select['name']; ?></option>";
-            <?php
-}
-        ?>
-    </select>
-    <label for=1">Điều kiện 2 </label>
-    <select name="condition2" id="condition2" class="form-control" name>
-        <?php foreach ($getSubCondition as $select) {
-            ?>
-            <option value="<?= $select['sub_id']; ?>"><?= $select['name']; ?></option>";
-            <?php
-        }
-        ?>
-    </select>
-    <input type="submit" name="submit" value="Submit">
-</form>
-
-
-<div class="form-result">
-
-    <?php foreach ($getPostCollection as $type => $item): ?>
-        <div style="display: block" class="block-form">
-            <div class="big-title"><?= $block->getType($type) ?></div>
-            <div class="content">
-
-                <?php foreach ($item as $idx => $subitem): ?>
-                    <?php if ($idx == 0): ?>
-                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
-                    <?php else: ?>
-                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
 
 
 <style>
@@ -90,3 +49,71 @@ $getPostCollection = $block->getPostCollection();
     }
 
 </style>
+<form id="form" name="form" method="post">
+    <div id="condition">
+        <label for=1">Condition 1</label>
+        <select name="condition1" id="condition1" class="target" id="condition1">
+            <option><?= "please choose conditon" ?></option>
+            <?php foreach ($getCondition as $select) {
+    ?>
+                <option class="option" value="<?= $select['condition_id']; ?>"><?= $select['name']; ?></option>";
+                <?php
+}
+            ?>
+        </select>
+    </div>
+    <div id="sub"></div>
+
+</form>
+<div class="form-result">
+    <?php foreach ($getPostCollection as $type => $item): ?>
+        <div style="display: block" class="block-form">
+            <div class="big-title"><?= $block->getType($type) ?></div>
+            <div class="content">
+
+                <?php foreach ($item as $idx => $subitem): ?>
+                    <?php if ($idx == 0): ?>
+                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
+                    <?php else: ?>
+                        <h4><?= $subitem['title'] ?></h4><?= $subitem['description'] ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<script>
+    require(["jquery"], function ($) {
+
+        $(".target").change(function () {
+            var value = $("#condition1").val();
+            var url = "<?= $block->getUrl('haircare/index/getajax')?>";
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "json",
+                data: {
+                    id: value
+                },
+                success: function (data) {
+                    var a = `<label for=1">Condition 2 </label>
+                     <select name="condition2" id="condition2" class="form-control">
+                       `;
+
+                    $.each(data, function (idx, value) {
+                        a += `<option value="${value['sub_id']}"> ${value['name']}</option>";`
+                    });
+                    a += ` </select>
+                    <input type="submit" name="submit" value="Submit">
+`;
+                    $('#sub').html(a);
+
+                },
+                error: function () {
+                }
+            });
+
+        });
+    })
+</script>

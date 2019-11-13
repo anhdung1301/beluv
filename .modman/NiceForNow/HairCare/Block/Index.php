@@ -3,60 +3,55 @@
 namespace NiceForNow\HairCare\Block;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Rss\Model\UrlBuilder;
 use NiceForNow\HairCare\Model\BeluvFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
+use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory as CollectionConditionFactory;
+use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory as CollectionSubConditionFactory;
 
 class Index extends Template
 {
     protected $_dataFactory;
-    protected $_resourceConnection;
+
     protected $_collectionFactory;
     protected $_dataPersistor;
     protected $_urlBuilder;
+    protected $_collectionConditionFactory;
+    protected $_collectionSubConditionFactory;
 
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
-        ResourceConnection $resourceConnection,
         BeluvFactory $dataFactory,
         CollectionFactory $collectionFactory,
         DataPersistorInterface $dataPersistor,
-        UrlBuilder $urlBuilder
+        UrlBuilder $urlBuilder,
+        CollectionConditionFactory $collectionConditionFactory,
+        CollectionSubConditionFactory $collectionSubConditionFactory
     ) {
         $this->_pageFactory = $pageFactory;
         $this->_dataFactory = $dataFactory;
-        $this->_resourceConnection = $resourceConnection;
         $this->_collectionFactory = $collectionFactory;
         $this->_dataPersistor = $dataPersistor;
         $this->_urlBuilder = $urlBuilder;
+        $this->_collectionConditionFactory = $collectionConditionFactory;
+        $this->_collectionSubConditionFactory = $collectionSubConditionFactory;
         parent::__construct($context);
     }
 
     public function getCondition()
     {
-        $connection = $this->_resourceConnection->getConnection();
-        $select = $connection->select()
-            ->from(
-                ['ce' => 'custom_condition']
-            );
-        $data = $connection->fetchAll($select);
-        return $data;
+        $data = $this->_collectionConditionFactory->create();
+        return $data->getData();
     }
 
     public function getSubCondition()
     {
-        $connection = $this->_resourceConnection->getConnection();
-        $select = $connection->select()
-            ->from(
-                ['ce' => 'custom_sub_condition']
-            );
-        $data = $connection->fetchAll($select);
-        return $data;
+        $data = $this->_collectionSubConditionFactory->create();
+        return $data->getData();
     }
 
     public function getPostCollection()
@@ -90,4 +85,15 @@ class Index extends Template
         }
         return $type;
     }
+    public function getSubConditionByID(){
+        $id = $this->_dataPersistor->get('id') ?$this->_dataPersistor->get('id'): 1;
+        foreach ($id as $key => $value){
+            $data = $this->_collectionSubConditionFactory->create()
+            ->addFieldToFilter('condition_id', ['eq' =>'1']);
+        return $data->getData();
+
+        }
+    }
+
+
 }

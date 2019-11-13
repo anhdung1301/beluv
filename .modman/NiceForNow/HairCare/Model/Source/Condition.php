@@ -1,29 +1,27 @@
 <?php
-namespace  NiceForNow\HairCare\Model\Source;
 
-use Magento\Framework\Data\OptionSourceInterface;
-use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
+namespace NiceForNow\HairCare\Model\Source;
+
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Data\OptionSourceInterface;
+use NiceForNow\HairCare\Block\Index;
 
 class Condition implements OptionSourceInterface
 {
-
-    protected $pageLayoutBuilder;
     protected $_resourceConnection;
     protected $options;
+    protected $_index;
 
-
-    public function __construct(BuilderInterface $pageLayoutBuilder,ResourceConnection $resourceConnection)
+    public function __construct( ResourceConnection $resourceConnection, Index $index)
     {
-        $this->pageLayoutBuilder = $pageLayoutBuilder;
         $this->_resourceConnection = $resourceConnection;
+        $this->_index = $index;
     }
-
 
     public function toOptionArray()
     {
+        $configOptions = $this->_index->getCondition();
 
-        $configOptions=$this->getCondition();
         $options = [];
         foreach ($configOptions as $key => $value) {
             $options[] = [
@@ -35,15 +33,4 @@ class Condition implements OptionSourceInterface
 
         return $options;
     }
-    public function getCondition()
-    {
-        $connection = $this->_resourceConnection->getConnection();
-        $select = $connection->select()
-            ->from(
-                ['ce' => 'custom_condition']
-            );
-        $data = $connection->fetchAll($select);
-        return $data;
-    }
-
 }

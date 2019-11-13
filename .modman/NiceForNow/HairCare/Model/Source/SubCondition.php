@@ -1,27 +1,21 @@
 <?php
 namespace  NiceForNow\HairCare\Model\Source;
-use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Data\OptionSourceInterface;
-use Magento\Framework\View\Model\PageLayout\Config\BuilderInterface;
-use Magento\Framework\App\ResourceConnection;
+use NiceForNow\HairCare\Block\Index;
 class SubCondition implements OptionSourceInterface
 {
-    protected $pageLayoutBuilder;
-    protected $_resourceConnection;
+    protected $resourceConnection;
     protected $options;
-    protected $_dataPersistor;
-    public function __construct(BuilderInterface $pageLayoutBuilder,ResourceConnection $resourceConnection,
-                                DataPersistorInterface $dataPersistor)
+    protected $_index;
+
+
+    public function __construct(Index $index)
     {
-        $this->pageLayoutBuilder = $pageLayoutBuilder;
-        $this->_resourceConnection = $resourceConnection;
-        $this->_dataPersistor = $dataPersistor;
+        $this->_index = $index;
     }
     public function toOptionArray()
     {
-        $id = $this->_dataPersistor->get('id_sub');
-
-        $configOptions=$this->getSubCondition();
+        $configOptions=$this->_index->getSubCondition();
         $options = [];
         foreach ($configOptions as $key => $value) {
             $options[] = [
@@ -29,19 +23,8 @@ class SubCondition implements OptionSourceInterface
                 'value' => $value["sub_id"],
             ];
         }
-        $this->_dataPersistor->clear('id_sub');
         $this->options = $options;
         return $options;
     }
-    public function getSubCondition()
-    {
-        $connection = $this->_resourceConnection->getConnection();
-        $select = $connection->select()
-            ->from(
-                ['ce' => 'custom_sub_condition']
-            );
-        $data = $connection->fetchAll($select);
-        return $data;
 
-    }
 }

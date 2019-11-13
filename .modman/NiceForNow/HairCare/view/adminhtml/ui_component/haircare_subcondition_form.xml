@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">haircare_subcondition_form.haircare_subcondition_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Page Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="save" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\SaveButton"/>
+            <button name="delete" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\DeleteButton"/>
+            <button name="back" class="NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit\BackButton"/>
+        </buttons>
+        <namespace>haircare_subcondition_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>haircare_subcondition_form.haircare_subcondition_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="haircare_subcondition_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="haircare/subCondition/save"/>
+        </settings>
+        <dataProvider class="NiceForNow\HairCare\Model\SubCondition\DataProvider" name="haircare_subcondition_form_data_source">
+            <settings>
+                <requestFieldName>sub_id</requestFieldName>
+                <primaryFieldName>sub_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="sub_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>sub_id</dataScope>
+            </settings>
+        </field>
+        <field name="condition_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">beluv</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Condition</label>
+                <dataScope>condition_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="NiceForNow\HairCare\Model\Source\Condition"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="name" sortOrder="20" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">data</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

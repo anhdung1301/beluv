@@ -14,6 +14,9 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="condition_id"/>
         </constraint>
+        <index referenceId="BELUV_CONDITION_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT" indexType="fulltext">
+            <column name="name"/>
+        </index>
     </table>
     <table name="custom_sub_condition" resource="default" engine="innodb" comment="Custom SubCondition">
         <column xsi:type="int" name="sub_id" padding="10" unsigned="true" nullable="false" identity="true"
@@ -23,6 +26,9 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="sub_id"/>
         </constraint>
+        <index referenceId="BELUV_SUB_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT" indexType="fulltext">
+            <column name="name"/>
+        </index>
     </table>
     <table name="custom_beluv" resource="default" engine="innodb" comment="Custom Beluv">
         <column xsi:type="int" name="beluv_id" padding="10" unsigned="true" nullable="false" identity="true"
