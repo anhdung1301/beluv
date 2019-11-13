@@ -3,6 +3,10 @@ namespace  NiceForNow\HairCare\Model\ResourceModel;
 
 class Condition extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
+    /**
+     * Condition constructor.
+     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context
     )

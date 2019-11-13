@@ -4,15 +4,29 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace NiceForNow\HairCare\Controller\Adminhtml\SubCondition;
 
+use Exception;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
+use NiceForNow\HairCare\Model\SubCondition;
 
+/**
+ * Class Delete
+ * @package NiceForNow\HairCare\Controller\Adminhtml\SubCondition
+ */
 class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition implements HttpPostActionInterface
 {
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     */
 
     public function execute()
     {
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
 
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
@@ -22,14 +36,14 @@ class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition impl
             try {
 
                 // init model and delete
-                $model = $this->_objectManager->create(\NiceForNow\HairCare\Model\SubCondition::class);
+                $model = $this->_objectManager->create(SubCondition::class);
                 $model->load($id);
                 $model->delete();
                 // display success message
                 $this->messageManager->addSuccessMessage(__('You deleted the  Subcondition.'));
                 // go to grid
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // display error message
                 $this->messageManager->addErrorMessage($e->getMessage());
                 // go back to edit form
@@ -39,6 +53,6 @@ class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition impl
         // display error message
         $this->messageManager->addErrorMessage(__('We can\'t find a Condition to delete.'));
         // go to grid
-        return $resultRedirect->setPath('*/*/index');
+        return $resultRedirect->setPath('*/*/');
     }
 }

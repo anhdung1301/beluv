@@ -11,22 +11,23 @@ class Beluv extends \Magento\Framework\Model\AbstractModel implements \Magento\F
     const Home_daily = 1;
     const Home_Weekly=2;
 
+
     protected function _construct()
     {
         $this->_init('NiceForNow\HairCare\Model\ResourceModel\Beluv');
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getIdentities()
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getDefaultValues()
-    {
-        $values = [];
-
-        return $values;
-    }
+    /**
+     * @return array
+     */
     public function getAvailableType()
     {
         return [self::Salon => __('Tại salon'), self::Home_daily => __('Tại nhà hàng ngày'),self::Home_Weekly=>__('Tại nhà hàng tuần')];

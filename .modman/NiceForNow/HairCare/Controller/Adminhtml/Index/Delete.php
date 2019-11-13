@@ -8,11 +8,18 @@ namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 
+/**
+ * Class Delete
+ * @package NiceForNow\HairCare\Controller\Adminhtml\Index
+ */
 class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements HttpPostActionInterface
 {
-
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     */
     public function execute()
     {
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
 
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted

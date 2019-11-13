@@ -1,6 +1,6 @@
 <?php
 
-Namespace NiceForNow\HairCare\Block\Adminhtml\SubCondition\Edit;
+Namespace NiceForNow\HairCare\Block\Adminhtml\Index\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -15,7 +15,7 @@ class SaveAndContinueButton extends GenericButton implements ButtonProviderInter
     public function getButtonData()
     {
         return [
-            'label' => __('Save and Continue Edit'),
+            'label' => __('Save and Continue'),
             'class' => 'save',
             'data_attribute' => [
                 'mage-init' => [

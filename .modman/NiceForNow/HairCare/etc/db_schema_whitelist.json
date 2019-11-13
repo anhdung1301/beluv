@@ -1,33 +1,33 @@
 {
-    "custom_condition": {
-        "column": {
-            "condition_id": true,
-            "name": true
-        },
-        "constraint": {
-            "PRIMARY": true
-        }
+  "custom_condition": {
+    "column": {
+      "condition_id": true,
+      "name": true
     },
-    "custom_sub_condition": {
-        "column": {
-            "sub_id": true,
-            "name": true
-        },
-        "constraint": {
-            "PRIMARY": true
-        }
-    },
-    "custom_beluv": {
-        "column": {
-            "beluv_id": true,
-            "condition_id": true,
-            "sub_id": true,
-            "type": true,
-            "title": true,
-            "description": true
-        },
-        "constraint": {
-            "PRIMARY": true
-        }
+    "constraint": {
+      "PRIMARY": true
     }
+  },
+  "custom_sub_condition": {
+    "column": {
+      "sub_id": true,
+      "name": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  },
+  "custom_beluv": {
+    "column": {
+      "beluv_id": true,
+      "condition_id": true,
+      "sub_id": true,
+      "type": true,
+      "title": true,
+      "description": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
 }

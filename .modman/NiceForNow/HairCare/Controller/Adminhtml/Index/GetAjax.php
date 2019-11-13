@@ -4,26 +4,55 @@ namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use \Magento\Framework\App\Request\Http;
+use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Json;
+use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Controller\ResultInterface;
 
+/**
+ * Class GetAjax
+ * @package NiceForNow\HairCare\Controller\Adminhtml\Index
+ */
 class GetAjax extends Action
 {
+    /**
+     * @var Http
+     */
     protected $request;
+    /**
+     * @var JsonFactory
+     */
     protected $resultJsonFactory;
+    /**
+     * @var ResourceConnection
+     */
+    protected $_resourceConnection;
 
-    public function __construct(Context $context, Http $request,
-                                \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-                                ResourceConnection $resourceConnection
+    /**
+     * GetAjax constructor.
+     * @param Context $context
+     * @param Http $request
+     * @param JsonFactory $resultJsonFactory
+     * @param ResourceConnection $resourceConnection
+     */
+    public function __construct(
+        Context $context,
+        Http $request,
+        JsonFactory $resultJsonFactory,
+        ResourceConnection $resourceConnection
     )
     {
-
         $this->request = $request;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->_resourceConnection = $resourceConnection;
         parent::__construct($context);
     }
 
+    /**
+     * @return ResponseInterface|Json|ResultInterface
+     */
     public function execute()
     {
         $resultJson = $this->resultJsonFactory->create();
@@ -41,8 +70,13 @@ class GetAjax extends Action
         return $resultJson->setData($options);
     }
 
+    /**
+     * @param $subCondition
+     * @return array
+     */
     public function getSubCondition($subCondition)
     {
+        /** @var  $connection */
         $connection = $this->_resourceConnection->getConnection();
         $select = $connection->select()
             ->from(
@@ -51,7 +85,5 @@ class GetAjax extends Action
             ->where('condition_id = ?', $subCondition);
         $data = $connection->fetchAll($select);
         return $data;
-
     }
-
 }

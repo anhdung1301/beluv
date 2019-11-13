@@ -1,26 +1,43 @@
 <?php
-namespace  NiceForNow\HairCare\Model\Source;
+
+namespace NiceForNow\HairCare\Model\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
 class BeluvType implements OptionSourceInterface
 {
+    /**
+     * @var \NiceForNow\HairCare\Model\Beluv
+     */
+    protected $_beluv;
+
+    /**
+     * IsActive constructor.
+     * @param \NiceForNow\HairCare\Model\Beluv $beluv
+     */
+    public function __construct(\NiceForNow\HairCare\Model\Beluv $beluv)
+    {
+        $this->_beluv = $beluv;
+    }
+
+    /**
+     * @return array
+     */
     public function toOptionArray()
     {
-        $configOptions=array(
-            0=>"Tại salon",
-            1=>"Tại nhà hàng ngày",
-            2=>"Tại nhà hàng tuần"
-        );
+        $availableOptions = $this->_beluv->getAvailableType();
         $options = [];
-        foreach ($configOptions as $key => $value) {
+
+        foreach ($availableOptions as $key => $value) {
             $options[] = [
                 'label' => $value,
                 'value' => $key,
             ];
         }
-        $this->options = $options;
-
         return $options;
     }
 }
+
+
+
+

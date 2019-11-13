@@ -1,30 +1,42 @@
 <?php
-namespace  NiceForNow\HairCare\Model\Source;
+
+namespace NiceForNow\HairCare\Model\Source;
+
 use Magento\Framework\Data\OptionSourceInterface;
-use NiceForNow\HairCare\Block\Index;
+use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory;
+
 class SubCondition implements OptionSourceInterface
 {
-    protected $resourceConnection;
-    protected $options;
-    protected $_index;
+    /**
+     * @var CollectionFactory
+     */
+    protected $collectionFactory;
+    /**
+     * @var null
+     */
+    protected $options = null;
 
-
-    public function __construct(Index $index)
+    /**
+     * SubCondition constructor.
+     * @param CollectionFactory $collectionFactory
+     */
+    public function __construct(CollectionFactory $collectionFactory)
     {
-        $this->_index = $index;
+        $this->collectionFactory = $collectionFactory;
     }
+
+    /**
+     * @return array
+     */
     public function toOptionArray()
     {
-        $configOptions=$this->_index->getSubCondition();
-        $options = [];
-        foreach ($configOptions as  $value) {
-            $options[] = [
-                'label' => $value["name"],
-                'value' => $value["sub_id"],
-            ];
+        /**
+         *  @var \NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection $configOptions
+         */
+        $configOptions = $this->collectionFactory->create();
+        if (empty($this->options)) {
+            $this->options = $configOptions->toOptionArray();
         }
-        $this->options = $options;
-        return $options;
+        return $this->options;
     }
-
 }

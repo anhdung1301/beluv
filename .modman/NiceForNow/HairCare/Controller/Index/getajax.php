@@ -35,20 +35,17 @@ class getajax extends Action
      * @param PageFactory $pageFactory
      * @param JsonFactory $jsonFactory
      * @param CollectionSubConditionFactory $collectionSubConditionFactory
-     * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
         JsonFactory $jsonFactory,
-        CollectionSubConditionFactory $collectionSubConditionFactory,
-        DataPersistorInterface $dataPersistor
+        CollectionSubConditionFactory $collectionSubConditionFactory
 
     )
     {
         $this->_jsonFactory = $jsonFactory;
         $this->_pageFactory = $pageFactory;
-        $this->_dataPersistor = $dataPersistor;
           $this->_collectionSubConditionFactory = $collectionSubConditionFactory;
         return parent::__construct($context);
     }

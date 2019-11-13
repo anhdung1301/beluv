@@ -3,6 +3,10 @@ namespace  NiceForNow\HairCare\Model\ResourceModel;
 
 class SubCondition extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
+    /**
+     * SubCondition constructor.
+     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context
     )

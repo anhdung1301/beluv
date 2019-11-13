@@ -8,26 +8,50 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\Condition;
 
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use NiceForNow\HairCare\Model\ConditionFactory;
 
+/**
+ * Class Save
+ * @package NiceForNow\HairCare\Controller\Adminhtml\Condition
+ */
 class Save extends Action
 {
-    protected $postFactory;
+    /**
+     * @var ConditionFactory
+     */
+    protected $conditionFactory;
 
+    /**
+     * Save constructor.
+     * @param Context $context
+     * @param ConditionFactory $conditionFactory
+     */
     public function __construct(
         Context $context,
-        ConditionFactory $postFactory
+        ConditionFactory $conditionFactory
     ) {
-        $this->_postFactory = $postFactory;
+        $this->conditionFactory = $conditionFactory;
         parent::__construct($context);
     }
 
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     * @throws Exception
+     */
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        $model = $this->_postFactory->create();
+        /**
+         * @var NiceForNow\HairCare\Model\Condition $model
+         */
+        $model = $this->conditionFactory->create();
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
@@ -44,7 +68,8 @@ class Save extends Action
                     "name" => $data['name'],
                 ]);
                 $model->save();
-            }{
+            }
+            {
                 $model->addData([
                     "name" => $data['name'],
                 ]);
@@ -57,7 +82,7 @@ class Save extends Action
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
-        if ($this->getRequest()->getParam('back', false) === 'duplicate') {
+        if ($this->getRequest()->getParam('back')) {
             return $resultRedirect->setPath('*/*/edit', ['condition_id' => $id, 'duplicate' => '0']);
         }
         {

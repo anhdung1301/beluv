@@ -13,16 +13,14 @@ class Condition extends \Magento\Framework\Model\AbstractModel implements \Magen
         $this->_init('NiceForNow\HairCare\Model\ResourceModel\Condition');
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getIdentities()
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getDefaultValues()
-    {
-        $values = [];
 
-        return $values;
-    }
 
 }

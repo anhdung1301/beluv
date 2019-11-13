@@ -10,25 +10,46 @@ namespace NiceForNow\HairCare\Controller\Adminhtml\SubCondition;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use NiceForNow\HairCare\Model\SubConditionFactory;
 
+/**
+ * Class Save
+ * @package NiceForNow\HairCare\Controller\Adminhtml\SubCondition
+ */
 class Save extends Action
 {
-    protected $_postFactory;
+    /**
+     * @var
+     */
+    protected $subCondition;
 
+    /**
+     * Save constructor.
+     * @param Context $context
+     * @param SubConditionFactory $subCondition
+     */
     public function __construct(
         Context $context,
-        SubConditionFactory $postFactory
+        SubConditionFactory $subCondition
     ) {
-        $this->_postFactory = $postFactory;
+        $this->subCondition = $subCondition;
         parent::__construct($context);
     }
 
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     */
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-
-        $model = $this->_postFactory->create();
+        /**
+         * @var NiceForNow\HairCare\Model\Beluv $model
+         */
+        $model = $this->subCondition->create();
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
             $id = $data['sub_id'] ? $data['sub_id'] : null;
@@ -44,7 +65,8 @@ class Save extends Action
                     "condition_id" => (int)$data['condition_id']
                 ]);
                 $model->save();
-            } {
+            }
+            {
                 $model->addData([
                     "name" => $data['name'],
                     "condition_id" => (int)$data['condition_id']
@@ -61,7 +83,8 @@ class Save extends Action
 
         if ($this->getRequest()->getParam('back')) {
             return $resultRedirect->setPath('*/*/edit', ['sub_id' => $id, 'duplicate' => '0']);
-        }{
+        }
+        {
             return $resultRedirect->setPath('*/*/index');
         }
     }

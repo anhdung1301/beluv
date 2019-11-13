@@ -13,16 +13,14 @@ class SubCondition extends \Magento\Framework\Model\AbstractModel implements \Ma
         $this->_init('NiceForNow\HairCare\Model\ResourceModel\SubCondition');
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getIdentities()
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
-    public function getDefaultValues()
-    {
-        $values = [];
 
-        return $values;
-    }
 
 }

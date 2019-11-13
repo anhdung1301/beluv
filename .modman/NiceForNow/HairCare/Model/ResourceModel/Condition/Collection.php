@@ -1,4 +1,5 @@
 <?php
+
 namespace NiceForNow\HairCare\Model\ResourceModel\Condition;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {

@@ -3,18 +3,19 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace NiceForNow\HairCare\Model\Beluv;
 
-use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
+use Magento\Ui\DataProvider\ModifierPoolDataProvider;
+use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 
 /**
  * Class DataProvider
  */
-class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
+class DataProvider extends ModifierPoolDataProvider
 {
-
     protected $collection;
 
     /**
@@ -67,7 +68,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $items = $this->collection->getItems();
         foreach ($items as $block) {
             $this->loadedData[$block->getId()] = $block->getData();
-        };
+        }
 
         $data = $this->dataPersistor->get('custom_beluv');
         if (!empty($data)) {
@@ -78,6 +79,5 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         }
 
         return $this->loadedData;
-
     }
 }

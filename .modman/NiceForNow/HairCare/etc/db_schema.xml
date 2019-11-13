@@ -14,7 +14,8 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="condition_id"/>
         </constraint>
-        <index referenceId="BELUV_CONDITION_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT" indexType="fulltext">
+        <index referenceId="BELUV_CONDITION_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT"
+               indexType="fulltext">
             <column name="name"/>
         </index>
     </table>
@@ -22,7 +23,7 @@
         <column xsi:type="int" name="sub_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Sub Id"/>
         <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Custom Name"/>
-        <column xsi:type="int" name="condition_id" nullable="false"  comment="Condition Id"/>
+        <column xsi:type="int" name="condition_id" nullable="false" comment="Condition Id"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="sub_id"/>
         </constraint>
@@ -33,12 +34,12 @@
     <table name="custom_beluv" resource="default" engine="innodb" comment="Custom Beluv">
         <column xsi:type="int" name="beluv_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Beluv Id"/>
-        <column xsi:type="int" name="condition_id" nullable="false"  comment="Condition Id"/>
-        <column xsi:type="int" name="sub_id" nullable="false"  comment="Sub Id"/>
+        <column xsi:type="int" name="condition_id" nullable="false" comment="Condition Id"/>
+        <column xsi:type="int" name="sub_id" nullable="false" comment="Sub Id"/>
         <column xsi:type="int" name="type" nullable="false" comment="Custom type"/>
         <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Custom title"/>
         <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Custom description"/>
-        <constraint xsi:type="primary" referenceId="PRIMARY" >
+        <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="beluv_id"/>
         </constraint>
         <index referenceId="BELUV_TITLE_META_KEYWORDS_META_DESCRIPTION_IDENTIFIER_CONTENT" indexType="fulltext">

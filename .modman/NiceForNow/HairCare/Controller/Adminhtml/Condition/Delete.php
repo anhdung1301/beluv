@@ -8,19 +8,22 @@ namespace NiceForNow\HairCare\Controller\Adminhtml\Condition;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 
+
 class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\Condition implements HttpPostActionInterface
 {
 
+    /**
+     * @return ResponseInterface|Redirect|ResultInterface
+     */
     public function execute()
     {
-
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('condition_id');
 
         if ($id) {
             try {
-
                 // init model and delete
                 $model = $this->_objectManager->create(\NiceForNow\HairCare\Model\Condition::class);
                 $model->load($id);

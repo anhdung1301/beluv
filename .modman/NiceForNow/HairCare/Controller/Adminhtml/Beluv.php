@@ -4,14 +4,24 @@
  * See COPYING.txt for license details.
  */
 namespace NiceForNow\HairCare\Controller\Adminhtml;
-
+/**
+ * Class Beluv
+ * @package NiceForNow\HairCare\Controller\Adminhtml
+ */
 abstract class Beluv extends \Magento\Backend\App\Action
 {
 
-    const ADMIN_RESOURCE = 'haircare::block';
-
+    const ADMIN_RESOURCE = 'NiceForNow_HairCare::Index';
+    /**
+     * @var \Magento\Framework\Registry
+     */
     protected $_coreRegistry;
 
+    /**
+     * Beluv constructor.
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     */
 
     public function __construct(\Magento\Backend\App\Action\Context $context, \Magento\Framework\Registry $coreRegistry)
     {
@@ -19,6 +29,10 @@ abstract class Beluv extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
+    /**
+     * @param $resultPage
+     * @return mixed
+     */
     protected function initPage($resultPage)
     {
         $resultPage->setActiveMenu('NiceForNow_HairCare::custom_beluv')

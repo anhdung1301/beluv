@@ -1,30 +1,42 @@
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="nicefornow_haircare_index_listing_data_source" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Beluv\Collection</item>
-                <item name="nicefornow_haircare_condition_listing_data_source" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Condition\Collection</item>
-                <item name="nicefornow_haircare_subcondition_listing_data_source" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection</item>
+                <item name="nicefornow_haircare_index_listing_data_source" xsi:type="string">
+                    NiceForNow\HairCare\Model\ResourceModel\Beluv\Collection
+                </item>
+                <item name="nicefornow_haircare_condition_listing_data_source" xsi:type="string">
+                    NiceForNow\HairCare\Model\ResourceModel\Condition\Collection
+                </item>
+                <item name="nicefornow_haircare_subcondition_listing_data_source" xsi:type="string">
+                    NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection
+                </item>
 
             </argument>
         </arguments>
     </type>
-    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\Beluv\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\Beluv\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">custom_beluv</argument>
             <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Beluv</argument>
         </arguments>
     </virtualType>
-    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\Condition\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\Condition\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">custom_condition</argument>
-            <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Condition</argument>
+            <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\Condition
+            </argument>
         </arguments>
     </virtualType>
-    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">custom_sub_condition</argument>
-            <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\SubCondition</argument>
+            <argument name="resourceModel" xsi:type="string">NiceForNow\HairCare\Model\ResourceModel\SubCondition
+            </argument>
         </arguments>
     </virtualType>
 

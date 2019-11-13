@@ -3,6 +3,7 @@
 namespace NiceForNow\HairCare\Block;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
@@ -10,18 +11,44 @@ use Magento\Rss\Model\UrlBuilder;
 use NiceForNow\HairCare\Model\BeluvFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory as CollectionConditionFactory;
-use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory as CollectionSubConditionFactory;
 
 class Index extends Template
 {
+    /**
+     * @var BeluvFactory
+     */
     protected $_dataFactory;
-
+    /**
+     * @var CollectionFactory
+     */
     protected $_collectionFactory;
+    /**
+     * @var DataPersistorInterface
+     */
     protected $_dataPersistor;
+    /**
+     * @var UrlBuilder
+     */
     protected $_urlBuilder;
+    /**
+     * @var CollectionConditionFactory
+     */
     protected $_collectionConditionFactory;
-    protected $_collectionSubConditionFactory;
+    /**
+     * @var Registry|null
+     */
+    protected $_coreRegistry = null;
 
+    /**
+     * Index constructor.
+     * @param Context $context
+     * @param PageFactory $pageFactory
+     * @param BeluvFactory $dataFactory
+     * @param CollectionFactory $collectionFactory
+     * @param DataPersistorInterface $dataPersistor
+     * @param UrlBuilder $urlBuilder
+     * @param CollectionConditionFactory $collectionConditionFactory
+     */
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
@@ -30,7 +57,7 @@ class Index extends Template
         DataPersistorInterface $dataPersistor,
         UrlBuilder $urlBuilder,
         CollectionConditionFactory $collectionConditionFactory,
-        CollectionSubConditionFactory $collectionSubConditionFactory
+        Registry $_coreRegistry
     ) {
         $this->_pageFactory = $pageFactory;
         $this->_dataFactory = $dataFactory;
@@ -38,42 +65,41 @@ class Index extends Template
         $this->_dataPersistor = $dataPersistor;
         $this->_urlBuilder = $urlBuilder;
         $this->_collectionConditionFactory = $collectionConditionFactory;
-        $this->_collectionSubConditionFactory = $collectionSubConditionFactory;
+        $this->_coreRegistry = $_coreRegistry;
         parent::__construct($context);
     }
 
+    /**
+     * @return array
+     */
     public function getCondition()
     {
         $data = $this->_collectionConditionFactory->create();
         return $data->getData();
     }
 
-    public function getSubCondition()
-    {
-        $data = $this->_collectionSubConditionFactory->create();
-        return $data->getData();
-    }
-
+    /**
+     * @return array
+     */
     public function getPostCollection()
     {
-        $data = $this->_dataPersistor->get('condition');
-        $post = $this->_collectionFactory->create()
-            ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
-            ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
-        $postData = $post->getData();
-        $dataRenderer = [];
-        foreach ($postData as $datum) {
-            $dataRenderer[$datum['type']][] = $datum;
-        }
-        $this->_dataPersistor->clear('condition');
-        return $dataRenderer;
+        return $this->_coreRegistry->registry('data_beluv');
     }
 
+    /**
+     * @param string $route
+     * @param array $params
+     * @return string
+     */
     public function getUrl($route = '', $params = [])
     {
         return $this->_urlBuilder->getUrl($route, $params);
     }
 
+    /**
+     * @param $id
+     * @return |null
+     */
     public function getType($id)
     {
         $type = null;

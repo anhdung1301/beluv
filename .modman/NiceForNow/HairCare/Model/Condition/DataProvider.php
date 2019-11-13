@@ -3,18 +3,19 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace NiceForNow\HairCare\Model\Condition;
 
-use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
+use Magento\Ui\DataProvider\ModifierPoolDataProvider;
+use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
 
 /**
  * Class DataProvider
  */
-class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
+class DataProvider extends ModifierPoolDataProvider
 {
-
     protected $collection;
 
     /**
@@ -67,7 +68,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $items = $this->collection->getItems();
         foreach ($items as $block) {
             $this->loadedData[$block->getId()] = $block->getData();
-        };
+        }
 
         $data = $this->dataPersistor->get('custom_condition');
         if (!empty($data)) {
@@ -77,6 +78,5 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
             $this->dataPersistor->clear('custom_condition');
         }
         return $this->loadedData;
-
     }
 }

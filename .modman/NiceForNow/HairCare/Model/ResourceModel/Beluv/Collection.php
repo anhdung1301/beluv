@@ -1,6 +1,9 @@
 <?php
+
 namespace NiceForNow\HairCare\Model\ResourceModel\Beluv;
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
+
+class Collection extends AbstractCollection
 {
     protected $_idFieldName = 'beluv_id';
     protected $_eventPrefix = 'custom_beluv_collection';

@@ -8,26 +8,50 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
 
+use Exception;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use NiceForNow\HairCare\Model\BeluvFactory;
 
+/**
+ * Class Save
+ * @package NiceForNow\HairCare\Controller\Adminhtml\Index
+ */
 class Save extends Action
 {
-    protected $postFactory;
+    /**
+     * @var BeluvFactory
+     */
+    protected $beluvFactory;
 
+    /**
+     * Save constructor.
+     * @param Context $context
+     * @param BeluvFactory $beluvFactory
+     */
     public function __construct(
         Context $context,
-        BeluvFactory $postFactory
+        BeluvFactory $beluvFactory
     ) {
-        $this->_postFactory = $postFactory;
+        $this->beluvFactory = $beluvFactory;
         parent::__construct($context);
     }
 
+    /**
+     * @return ResponseInterface|\Magento\Framework\Controller\Result\Redirect|ResultInterface
+     * @throws Exception
+     */
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        $model = $this->_postFactory->create();
+        /**
+         * @var NiceForNow\HairCare\Model\Beluv $model
+         */
+        $model = $this->beluvFactory->create();
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         try {
             $id = $data['beluv_id'] ? $data['beluv_id'] : null;
@@ -46,7 +70,8 @@ class Save extends Action
                     "description" => $data['description'],
                 ]);
                 $model->save();
-            }  {
+            }
+            {
                 $model->addData([
                     "condition_id" => (int)$data['condition_id'],
                     "sub_id" => (int)$data['sub_id'],
@@ -63,9 +88,10 @@ class Save extends Action
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         }
-        if ($this->getRequest()->getParam('back', false) === 'duplicate') {
+        if ($this->getRequest()->getParam('back')) {
             return $resultRedirect->setPath('*/*/edit', ['beluv_id' => $id, 'duplicate' => '0']);
-        }{
+        }
+        {
             return $resultRedirect->setPath('*/*/index');
         }
     }
