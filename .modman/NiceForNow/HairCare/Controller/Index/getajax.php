@@ -4,60 +4,59 @@ namespace NiceForNow\HairCare\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\Controller\Result\JsonFactory;
-use Magento\Framework\View\Result\PageFactory;
-use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory as CollectionSubConditionFactory;
 use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultInterface;
-
-use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\View\Result\PageFactory;
 
 class getajax extends Action
 {
-    /**
-     * @var PageFactory
-     */
-    protected $_pageFactory;
-    /**
-     * @var JsonFactory
-     */
-    protected $_jsonFactory;
 
     /**
-     * @var CollectionSubConditionFactory
+     * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $_collectionSubConditionFactory;
+    protected $resultPageFactory;
+    /**
+     * @var \Magento\Framework\Controller\Result\RawFactory
+     */
+    protected $resultRawFactory;
 
     /**
-     * getajax constructor.
-     * @param Context $context
-     * @param PageFactory $pageFactory
-     * @param JsonFactory $jsonFactory
-     * @param CollectionSubConditionFactory $collectionSubConditionFactory
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory resultPageFactory
+     * @param \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
      */
     public function __construct(
-        Context $context,
-        PageFactory $pageFactory,
-        JsonFactory $jsonFactory,
-        CollectionSubConditionFactory $collectionSubConditionFactory
-
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
     )
     {
-        $this->_jsonFactory = $jsonFactory;
-        $this->_pageFactory = $pageFactory;
-          $this->_collectionSubConditionFactory = $collectionSubConditionFactory;
-        return parent::__construct($context);
+        $this->resultPageFactory    = $resultPageFactory;
+        $this->resultRawFactory     = $resultRawFactory;
+        parent::__construct($context);
     }
-
     /**
-     * @return ResponseInterface|Json|ResultInterface
+     * Example for returning Raw Text data
+     *
+     * @return string
      */
     public function execute()
     {
-        $conditions = $this->getRequest()->getPostValue();
-        $data = $this->_collectionSubConditionFactory->create()
-           ->addFieldToFilter('condition_id', ['eq' =>$conditions])->getData();
-       return $this->_jsonFactory->create()->setData($data);
+        $resultPage = $this->resultPageFactory->create();
+        $result = $this->resultRawFactory->create();
+        $block = $resultPage->getLayout()
+            ->createBlock(
+                "NiceForNow\HairCare\Block\Widget\SubCondition",
+                "block_name",
+                [
+                    'data' => [
+                        'my_arg' => 'testvalue'
+                    ]
+                ]
+            )
+            ->setData('area', 'frontend')
+            ->toHtml();
+        $result->setContents($block);
+        return $result;
     }
 }

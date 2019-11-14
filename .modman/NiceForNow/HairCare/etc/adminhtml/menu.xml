@@ -13,7 +13,6 @@
         <add id="NiceForNow_HairCare::custom_sub_condition" title="SubCondition" module="NiceForNow_HairCare"
              sortOrder="20" action="haircare/subcondition/index" resource="NiceForNow_HairCare::custom_sub_conditon"
              parent="NiceForNow_HairCare::maintext"/>
-
     </menu>
 </config>
 

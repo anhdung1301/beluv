@@ -5,7 +5,10 @@ namespace NiceForNow\HairCare\Controller\Index;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Registry;
+use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 
@@ -32,7 +35,6 @@ class index extends Action
      */
     protected $_collectionFactory;
 
-
     /**
      * index constructor.
      * @param Context $context
@@ -55,20 +57,21 @@ class index extends Action
         return parent::__construct($context);
     }
 
+    /**
+     * @return ResponseInterface|ResultInterface|Page
+     */
     public function execute()
     {
+        $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
+        $limit = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 2;
         $data = $this->getRequest()->getPost();
 
-        $post = $this->_collectionFactory->create()
+        $collection = $this->_collectionFactory->create()
             ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
             ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
-        $postData = $post->getData();
-        $dataRenderer = [];
-        foreach ($postData as $datum) {
-            $dataRenderer[$datum['type']][] = $datum;
-        }
-        $this->_coreRegistry->register('data_beluv', $dataRenderer);
-
+        $collection->setPageSize($limit);
+        $collection->setCurPage($page);
+        $this->_coreRegistry->register('data_beluv', $collection);
         return $this->_pageFactory->create();
     }
 }

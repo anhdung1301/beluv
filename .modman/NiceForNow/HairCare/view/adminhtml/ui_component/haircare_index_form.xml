@@ -74,7 +74,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="NiceForNow\HairCare\Model\Source\Condition"/>
+                        <options class="NiceForNow\HairCare\Model\Config\Source\Condition"/>
                     </settings>
                 </select>
             </formElements>
@@ -113,7 +113,7 @@
             <formElements>
                 <select>
                     <settings>
-                        <options class="NiceForNow\HairCare\Model\Source\BeluvType"/>
+                        <options class="NiceForNow\HairCare\Model\Config\Source\BeluvType"/>
                     </settings>
                 </select>
             </formElements>

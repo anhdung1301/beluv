@@ -8,24 +8,23 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\Condition;
 
-use Exception;
-use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\Result\Redirect;
-use Magento\Framework\Controller\ResultInterface;
 use NiceForNow\HairCare\Model\ConditionFactory;
 
 /**
  * Class Save
  * @package NiceForNow\HairCare\Controller\Adminhtml\Condition
  */
-class Save extends Action
+class Save extends \NiceForNow\HairCare\Controller\Adminhtml\AbstractSave
 {
     /**
      * @var ConditionFactory
      */
-    protected $conditionFactory;
+    protected $modelFactory;
+    /**
+     * @var string
+     */
+    protected $idFieldName = 'condition_id';
 
     /**
      * Save constructor.
@@ -36,57 +35,15 @@ class Save extends Action
         Context $context,
         ConditionFactory $conditionFactory
     ) {
-        $this->conditionFactory = $conditionFactory;
+        $this->modelFactory = $conditionFactory;
         parent::__construct($context);
     }
 
     /**
-     * @return ResponseInterface|Redirect|ResultInterface
-     * @throws Exception
+     * @return string
      */
-    public function execute()
+    public function getMessageSuccess()
     {
-        $data = $this->getRequest()->getPostValue();
-        /**
-         * @var NiceForNow\HairCare\Model\Condition $model
-         */
-        $model = $this->conditionFactory->create();
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-        $resultRedirect = $this->resultRedirectFactory->create();
-
-        try {
-            $id = $data['condition_id'] ? $data['condition_id'] : null;
-            $id == null ? $msg = __('add record success') : $msg = __('Edit record success');
-
-            if (isset($data['condition_id']) && !$id) {
-                unset($data['condition_id']);
-            }
-            if ($id) {
-                $model->load($id);
-                $model->addData([
-                    "condition_id" => (int)$data['condition_id'],
-                    "name" => $data['name'],
-                ]);
-                $model->save();
-            }
-            {
-                $model->addData([
-                    "name" => $data['name'],
-                ]);
-                $model->save();
-            }
-            $model->load($id);
-
-            $model->setUrlKey($model->beforeSave());
-            $this->messageManager->addSuccessMessage($msg);
-        } catch (LocalizedException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-        }
-        if ($this->getRequest()->getParam('back')) {
-            return $resultRedirect->setPath('*/*/edit', ['condition_id' => $id, 'duplicate' => '0']);
-        }
-        {
-            return $resultRedirect->setPath('*/*/index');
-        }
+        return __('save condition success');
     }
 }

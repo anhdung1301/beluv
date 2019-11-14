@@ -1,11 +1,20 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 
-namespace NiceForNow\HairCare\Model\Source;
+namespace NiceForNow\HairCare\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class Type
+ * @package NiceForNow\HairCare\Model\Config\Source
+ */
 class BeluvType implements OptionSourceInterface
-{ const TYPE_SALON = 0;
+{
+    const TYPE_SALON = 0;
     const TYPE_HOME_DAILY = 1;
     const TYPE_HOME_WEEKLY = 2;
 

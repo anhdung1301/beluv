@@ -4,11 +4,89 @@
  */
 $getCondition = $block->getCondition();
 $getSubCondition = $block->getSubConditionByID();
-$getPostCollection = $block->getPostCollection();
-//\NiceFowNow\Haricare\Helper\Page::XML_PATH_NO_ROUTE_PAGE;
+$getPostCollection = $block->getListNews()->getdata();
+$dataRenderer=[];
+foreach ($getPostCollection as $datum) {
+    $dataRenderer[$datum['type']][] = $datum;
+}
 ?>
+<form id="form" name="form" method="post">
+    <div id="condition">
+        <label for=1">Condition 1</label>
+        <select name="condition1" id="condition1" class="target" id="condition1">
+            <option><?= "please choose conditon" ?></option>
+            <?php foreach ($getCondition as $select) {
+    ?>
+                <option class="option" value="<?= /* @noEscape */
+                $select['condition_id']; ?>"><?= /* @noEscape */
+                    $select['name']; ?></option>";
+                <?php
+}
+            ?>
+        </select>
+    </div>
+    <div id="sub"></div>
 
+</form>
+<div class="form-result">
 
+    <?php if ($dataRenderer && count($dataRenderer)): ?>
+        <?php foreach ($dataRenderer as $type => $item): ?>
+            <div style="display: block" class="block-form">
+                <div class="big-title"><?= /* @noEscape */
+                    $block->getType($type) ?></div>
+                <div class="content">
+                    <?php foreach ($item as $idx => $subitem): ?>
+                        <?php if ($idx == 0): ?>
+                            <h4><?= /* @noEscape */
+                        $subitem['title'] ?></h4><?= /* @noEscape */
+                            $subitem['description'] ?>
+                        <?php else: ?>
+                            <h4><?= /* @noEscape */
+                        $subitem['title'] ?></h4><?= /* @noEscape */
+                            $subitem['description'] ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="show-page">
+        <?php if ($this->getPagerHtml()): ?>
+            <?php echo $this->getPagerHtml(); ?>
+        <?php endif; ?>
+    <?php else: ?>
+        <div class="rsgitech-no-records">
+            <?php echo __('News not available'); ?>
+        </div>
+        </div>
+    <?php endif; ?>
+
+</div>
+
+<script>
+    require(["jquery"], function ($) {
+
+        $(".target").change(function () {
+            var value = $("#condition1").val();
+
+            var url = "<?= /* @noEscape */$block->getUrl('haircare/index/getajax')?>";
+            $.ajax({
+                type: "POST",
+                url: url,
+                dataType: "html",
+                data: {
+                    id: value
+                },
+                success: function (response) {
+                    $('#sub').html(response);
+                },
+                error: function () {
+                }
+            });
+
+        });
+    })
+</script>
 <style>
     .form-result {
         display: flex;
@@ -49,72 +127,58 @@ $getPostCollection = $block->getPostCollection();
         border-right: 1px solid #ddd;
     }
 
+    .rsgitech-news .rsg-news-list {
+        padding: 15px;
+        border: 1px solid #ccc;
+        display: block;
+        margin-top: -1px;
+    }
+
+    .rsgitech-news .rsg-news-list:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+
+    .rsgitech-news .rsg-news-list:nth-child(odd) {
+        background-color: #FAFAFA;
+    }
+
+    .rsgitech-news .rsg-news-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .rsgitech-news .rsg-news-time {
+        font-size: 14px;
+        color: #666;
+        font-style: italic;
+    }
+
+    .rsgitech-news .pager {
+        margin-top: 20px;
+        display: flex;
+    }
+
+    .rsgitech-news .toolbar-amount {
+        margin-right: 20px;
+    }
+
+    .rsgitech-news .rsg-news-desc {
+        margin-top: 15px;
+    }
+
+    .rsgitech-news a:hover {
+        text-decoration: none;
+    }
+    .form-result .show-page{
+        position: absolute;
+        bottom: -45px;
+        left: 0;
+        width: 100%;
+    }
+    .column.main{
+        position: relative;
+        margin-bottom: 70px;
+    }
+
 </style>
-<form id="form" name="form" method="post">
-    <div id="condition">
-        <label for=1">Condition 1</label>
-        <select name="condition1" id="condition1" class="target" id="condition1">
-            <option><?= "please choose conditon" ?></option>
-            <?php foreach ($getCondition as $select) {
-    ?>
-                <option class="option" value="<?=  /* @noEscape */ $select['condition_id']; ?>"><?= /* @noEscape */ $select['name']; ?></option>";
-                <?php
-}
-            ?>
-        </select>
-    </div>
-    <div id="sub"></div>
-
-</form>
-<div class="form-result">
-    <?php foreach ($getPostCollection as $type => $item): ?>
-        <div style="display: block" class="block-form">
-            <div class="big-title"><?= /* @noEscape */$block->getType($type) ?></div>
-            <div class="content">
-
-                <?php foreach ($item as $idx => $subitem): ?>
-                    <?php if ($idx == 0): ?>
-                        <h4><?= /* @noEscape */$subitem['title'] ?></h4><?=/* @noEscape */ $subitem['description'] ?>
-                    <?php else: ?>
-                        <h4><?=/* @noEscape */ $subitem['title'] ?></h4><?= /* @noEscape */$subitem['description'] ?>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
-
-<script>
-    require(["jquery"], function ($) {
-
-        $(".target").change(function () {
-            var value = $("#condition1").val();
-            var url = "<?= /* @noEscape */$block->getUrl('haircare/index/getajax')?>";
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType: "json",
-                data: {
-                    id: value
-                },
-                success: function (data) {
-                    var a = `<label for=1">Condition 2 </label>
-                     <select name="condition2" id="condition2" class="form-control">
-                       `;
-
-                    $.each(data, function (idx, value) {
-                        a += `<option value="${value['sub_id']}"> ${value['name']}</option>";`
-                    });
-                    a += ` </select>
-                    <input type="submit" name="submit" value="Submit">
-`;
-                    $('#sub').html(a);
-
-                },
-                error: function () {
-                }
-            });
-
-        });
-    })
-</script>

@@ -8,24 +8,23 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\Index;
 
-use Exception;
-use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\View\Result\Redirect;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
 use NiceForNow\HairCare\Model\BeluvFactory;
 
 /**
  * Class Save
  * @package NiceForNow\HairCare\Controller\Adminhtml\Index
  */
-class Save extends Action
+class Save extends \NiceForNow\HairCare\Controller\Adminhtml\AbstractSave
 {
     /**
      * @var BeluvFactory
      */
-    protected $beluvFactory;
+    protected $modelFactory;
+    /**
+     * @var string
+     */
+    protected $idFieldName = 'beluv_id';
 
     /**
      * Save constructor.
@@ -36,63 +35,15 @@ class Save extends Action
         Context $context,
         BeluvFactory $beluvFactory
     ) {
-        $this->beluvFactory = $beluvFactory;
+        $this->modelFactory = $beluvFactory;
         parent::__construct($context);
     }
 
     /**
-     * @return ResponseInterface|\Magento\Framework\Controller\Result\Redirect|ResultInterface
-     * @throws Exception
+     * @return string
      */
-    public function execute()
+    public function getMessageSuccess()
     {
-        $data = $this->getRequest()->getPostValue();
-        /**
-         * @var NiceForNow\HairCare\Model\Beluv $model
-         */
-        $model = $this->beluvFactory->create();
-        /** @var Redirect $resultRedirect */
-        $resultRedirect = $this->resultRedirectFactory->create();
-        try {
-            $id = $data['beluv_id'] ? $data['beluv_id'] : null;
-            $id == null ? $msg = __('add record success') : $msg = __('Edit record success');
-            if (isset($data['beluv_id']) && !$id) {
-                unset($data['beluv_id']);
-            }
-            if ($id) {
-                $model->load($id);
-                $model->addData([
-                    "beluv_id" => (int)$data['beluv_id'],
-                    "condition_id" => (int)$data['condition_id'],
-                    "sub_id" => (int)$data['sub_id'],
-                    "type" => (int)$data['type'],
-                    "title" => $data['title'],
-                    "description" => $data['description'],
-                ]);
-                $model->save();
-            }
-            {
-                $model->addData([
-                    "condition_id" => (int)$data['condition_id'],
-                    "sub_id" => (int)$data['sub_id'],
-                    "type" => (int)$data['type'],
-                    "title" => $data['title'],
-                    "description" => $data['description'],
-                ]);
-                $model->save();
-            }
-            $model->load($id);
-
-            $model->setUrlKey($model->beforeSave());
-            $this->messageManager->addSuccessMessage($msg);
-        } catch (LocalizedException $e) {
-            $this->messageManager->addErrorMessage($e->getMessage());
-        }
-        if ($this->getRequest()->getParam('back')) {
-            return $resultRedirect->setPath('*/*/edit', ['beluv_id' => $id, 'duplicate' => '0']);
-        }
-        {
-            return $resultRedirect->setPath('*/*/index');
-        }
+        return __('save HairCare success');
     }
 }

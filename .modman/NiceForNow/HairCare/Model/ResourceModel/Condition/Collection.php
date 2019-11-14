@@ -16,5 +16,4 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         $this->_init('NiceForNow\HairCare\Model\Condition', 'NiceForNow\HairCare\Model\ResourceModel\Condition');
     }
-
 }

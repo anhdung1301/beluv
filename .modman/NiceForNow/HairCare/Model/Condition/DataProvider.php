@@ -10,7 +10,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
-
+use NiceForNow\HairCare\Model\Condition;
 /**
  * Class DataProvider
  */
@@ -27,6 +27,7 @@ class DataProvider extends ModifierPoolDataProvider
      * @var array
      */
     protected $loadedData;
+
 
     /**
      * Constructor
@@ -70,12 +71,12 @@ class DataProvider extends ModifierPoolDataProvider
             $this->loadedData[$block->getId()] = $block->getData();
         }
 
-        $data = $this->dataPersistor->get('custom_condition');
+        $data = $this->dataPersistor->get(Condition::CACHE_TAG);
         if (!empty($data)) {
             $block = $this->collection->getNewEmptyItem();
             $block->setData($data);
             $this->loadedData[$block->getId()] = $block->getData();
-            $this->dataPersistor->clear('custom_condition');
+            $this->dataPersistor->clear(Condition::CACHE_TAG);
         }
         return $this->loadedData;
     }

@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \NiceForNow\HairCare\Block\Widget\SubCondition $block */
+?>
+<div class="field>
+    <label class="label"><span><?= $block->escapeHtml(__('sub condition')) ?></span></label>
+    <div class="control">
+        <select name="condition2" title="condition2">
+            <?php $collection = $block->getCondition(); ?>
+            <?php foreach ($collection as $subCondition):?>
+                <option value="<?= $subCondition->getId() ?>"><?= $block->escapeHtml(__($subCondition->getName())) ?></option>
+            <?php endforeach;?>
+        </select>
+        <input type="submit">
+    </div>
+</div>

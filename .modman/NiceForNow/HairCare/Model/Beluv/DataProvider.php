@@ -10,7 +10,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
-
+use NiceForNow\HairCare\Model\Beluv;
 /**
  * Class DataProvider
  */
@@ -70,12 +70,12 @@ class DataProvider extends ModifierPoolDataProvider
             $this->loadedData[$block->getId()] = $block->getData();
         }
 
-        $data = $this->dataPersistor->get('custom_beluv');
+        $data = $this->dataPersistor->get(Beluv::CACHE_TAG);
         if (!empty($data)) {
             $block = $this->collection->getNewEmptyItem();
             $block->setData($data);
             $this->loadedData[$block->getId()] = $block->getData();
-            $this->dataPersistor->clear('custom_beluv');
+            $this->dataPersistor->clear(Beluv::CACHE_TAG);
         }
 
         return $this->loadedData;
