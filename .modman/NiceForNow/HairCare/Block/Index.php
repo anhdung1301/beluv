@@ -10,9 +10,9 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Rss\Model\UrlBuilder;
 use NiceForNow\HairCare\Model\BeluvFactory;
+use NiceForNow\HairCare\Model\Config\Source\BeluvType;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory as CollectionConditionFactory;
-use NiceForNow\HairCare\Model\Config\Source\BeluvType;
 
 class Index extends Template
 {
@@ -44,6 +44,7 @@ class Index extends Template
      * @var BeluvType
      */
     protected $beluvType;
+
     /**
      * Index constructor.
      * @param Context $context
@@ -105,7 +106,6 @@ class Index extends Template
      */
     public function getType($id)
     {
-
         $type = null;
 
         $data = $this->beluvType->toArray();
@@ -135,10 +135,9 @@ class Index extends Template
 
         if ($this->getListNews()) {
             $pager = $this->getLayout()->createBlock('Magento\Theme\Block\Html\Pager', 'nicefornow.haircare.pager')
-                ->setAvailableLimit([6 => 6, 10 => 10, 15 => 15, 20 => 20])
+                ->setAvailableLimit([1 => 1, 10 => 10, 15 => 15, 20 => 20])
                 ->setShowPerPage(true)
                 ->setCollection($this->getListNews());
-
 
             $this->setChild('pager', $pager);
 
@@ -153,6 +152,5 @@ class Index extends Template
     public function getListNews()
     {
         return $this->_coreRegistry->registry('data_beluv');
-
     }
 }

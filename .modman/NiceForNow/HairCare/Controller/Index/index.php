@@ -66,12 +66,22 @@ class index extends Action
         $limit = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 2;
         $data = $this->getRequest()->getPost();
 
-        $collection = $this->_collectionFactory->create()
-            ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
-            ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
-        $collection->setPageSize($limit);
-        $collection->setCurPage($page);
-        $this->_coreRegistry->register('data_beluv', $collection);
-        return $this->_pageFactory->create();
+        if ($data['condition2'] == 0) {
+            $collection = $this->_collectionFactory->create()
+                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']]);
+            $collection->setPageSize($limit);
+            $collection->setCurPage($page);
+            $this->_coreRegistry->register('data_beluv', $collection);
+            return $this->_pageFactory->create();
+        }else {
+            $collection = $this->_collectionFactory->create()
+                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
+                ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
+
+            $collection->setPageSize($limit);
+            $collection->setCurPage($page);
+            $this->_coreRegistry->register('data_beluv', $collection);
+            return $this->_pageFactory->create();
+        }
     }
 }

@@ -1,9 +1,24 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="NiceForNow_HairCare::css" />
+        <css src="NiceForNow_HairCare::css"/>
     </head>
     <referenceContainer name="content">
-        <block class="NiceForNow\HairCare\Block\Index" name="haircare_index" template="NiceForNow_HairCare::index.phtml" />
+        <block class="NiceForNow\HairCare\Block\Index" name="haircare_index"
+               template="NiceForNow_HairCare::index.phtml">
+            <container name="category.product.list.additional" as="additional" />
+            <block class="Magento\Framework\View\Element\RendererList" name="category.product.type.details.renderers" as="details.renderers">
+                <block class="Magento\Framework\View\Element\Template" as="default"/>
+            </block>
+            <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+
+                <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+
+            </block>
+            <action method="setToolbarBlockName">
+                <argument name="name" xsi:type="string">product_list_toolbar</argument>
+            </action>
+        </block>
     </referenceContainer>
 </page>

@@ -7,35 +7,31 @@
 
 namespace NiceForNow\HairCare\Controller\Adminhtml\SubCondition;
 
-use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Ui\Component\MassAction\Filter;
+use NiceForNow\HairCare\Controller\Adminhtml\AbstractMassDelete;
 use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory;
 
 /**
  * Class MassDelete
  */
-class MassDelete extends Action implements HttpPostActionInterface
+class MassDelete extends AbstractMassDelete
 {
+
     /**
      * Authorization level of a basic admin session
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'NiceForNow_HairCare::index';
-    /**
-     * @var Filter
-     */
-    protected $filter;
+    const ADMIN_RESOURCE = 'NiceForNow_HairCare::codition';
     /**
      * @var CollectionFactory
      */
-    protected $collectionFactory;
+    protected $modelFactory;
+    /**
+     * @var Filter|null
+     */
+    protected $filter = null ;
 
     /**
      * MassDelete constructor.
@@ -49,30 +45,9 @@ class MassDelete extends Action implements HttpPostActionInterface
         CollectionFactory $collectionFactory
     )
     {
+        $this->modelFactory = $collectionFactory;
         $this->filter = $filter;
-        $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
 
-    /**
-     * @return ResponseInterface|ResultInterface
-     * @throws LocalizedException
-     */
-    public function execute()
-    {
-        $collection = $this->filter->getCollection($this->collectionFactory->create());
-
-        $collectionSize = $collection->getSize();
-
-        foreach ($collection as $item) {
-            $item = $this->collectionFactory->create()->load($item->getId());
-            $item->delete();
-        }
-
-        $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $collectionSize));
-
-        /** @var Redirect $resultRedirect */
-        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        return $resultRedirect->setPath('*/*/index');
-    }
 }

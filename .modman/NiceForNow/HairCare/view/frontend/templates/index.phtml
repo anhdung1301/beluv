@@ -6,6 +6,7 @@ $getCondition = $block->getCondition();
 $getSubCondition = $block->getSubConditionByID();
 $getPostCollection = $block->getListNews()->getdata();
 $dataRenderer=[];
+
 foreach ($getPostCollection as $datum) {
     $dataRenderer[$datum['type']][] = $datum;
 }
@@ -26,7 +27,6 @@ foreach ($getPostCollection as $datum) {
         </select>
     </div>
     <div id="sub"></div>
-
 </form>
 <div class="form-result">
 
