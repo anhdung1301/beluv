@@ -5,8 +5,7 @@
 $getCondition = $block->getCondition();
 $getSubCondition = $block->getSubConditionByID();
 $getPostCollection = $block->getListNews()->getdata();
-$dataRenderer=[];
-
+$dataRenderer = [];
 foreach ($getPostCollection as $datum) {
     $dataRenderer[$datum['type']][] = $datum;
 }
@@ -15,15 +14,19 @@ foreach ($getPostCollection as $datum) {
     <div id="condition">
         <label for=1">Condition 1</label>
         <select name="condition1" id="condition1" class="target" id="condition1">
-            <option><?= "please choose conditon" ?></option>
+            <option value="0"><?= "please choose conditon" ?></option>
             <?php foreach ($getCondition as $select) : ?>
                 <?php if ($select['condition_id'] == $block->getCheckedSelect()): ?>
-                    <option class="option" value="<?= /* @noEscape */ $select['condition_id']; ?>" selected="selected" >
-                        <?= /* @noEscape */ $select['name']; ?>
+                    <option class="option" value="<?= /* @noEscape */
+                    $select['condition_id']; ?>" selected="selected">
+                        <?= /* @noEscape */
+                        $select['name']; ?>
                     </option>";
                 <?php else: ?>
-                    <option class="option" value="<?= /* @noEscape */ $select['condition_id']; ?>" >
-                        <?= /* @noEscape */ $select['name']; ?>
+                    <option class="option" value="<?= /* @noEscape */
+                    $select['condition_id']; ?>">
+                        <?= /* @noEscape */
+                        $select['name']; ?>
                     </option>";
                 <?php endif; ?>
             <?php endforeach; ?>
@@ -35,14 +38,13 @@ foreach ($getPostCollection as $datum) {
 
     <?php if ($dataRenderer && count($dataRenderer)): ?>
 
-        <?php foreach ($dataRenderer as $type => $item):;?>
+        <?php foreach ($dataRenderer as $type => $item):; ?>
 
             <div style="display: block" class="block-form">
                 <div class="big-title"><h2><?= /* @noEscape */
                     $block->getType($type) ?></div>
                 <div class="content">
-                    <?php foreach ($item as $idx => $subitem):
-                        ;?>
+                    <?php foreach ($item as $idx => $subitem):; ?>
                         <?php if ($idx == 0): ?>
                             <h4><?= /* @noEscape */
                         $subitem['title'] ?></h4><?= /* @noEscape */
@@ -58,11 +60,13 @@ foreach ($getPostCollection as $datum) {
         <?php endforeach; ?>
         <div class="show-page">
         <?php if ($block->getPagerHtml()): ?>
-            <?= /* @noEscape */ $block->getPagerHtml(); ?>
+            <?= /* @noEscape */
+            $block->getPagerHtml(); ?>
         <?php endif; ?>
     <?php else: ?>
         <div class="rsgitech-no-records">
-            <?= /* @noEscape */ __('News not available'); ?>
+            <?= /* @noEscape */
+            __('News not available'); ?>
         </div>
         </div>
     <?php endif; ?>
@@ -74,23 +78,14 @@ foreach ($getPostCollection as $datum) {
         $(document).ready(function () {
             let value1 = $("#condition1").val();
             if (!isNaN(parseInt(value1))) {
-                var url = "<?= /* @noEscape */$block->getUrl('haircare/index/getajax')?>";
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    dataType: "html",
-                    data: {
-                        id: value1
-                    },
-                    success: function (response) {
-                        $('#sub').html(response);
-
-                    },
-                    error: function () {
-                    }
-                });
+                LoadAjax(value1);
             }
             $(".target").change(function () {
+                var value = $("#condition1").val();
+                LoadAjax(value);
+            });
+
+            function LoadAjax(value) {
                 var value = $("#condition1").val();
                 var url = "<?= /* @noEscape */$block->getUrl('haircare/index/getajax')?>";
                 $.ajax({
@@ -98,7 +93,8 @@ foreach ($getPostCollection as $datum) {
                     url: url,
                     dataType: "html",
                     data: {
-                        id: value
+                        id: value,
+                        sub_id:<?= /* @noEscape */$block->getParamSub();?>
                     },
                     success: function (response) {
                         $('#sub').html(response);
@@ -107,7 +103,8 @@ foreach ($getPostCollection as $datum) {
                     error: function () {
                     }
                 });
-            });
+
+            }
         });
     })
 </script>

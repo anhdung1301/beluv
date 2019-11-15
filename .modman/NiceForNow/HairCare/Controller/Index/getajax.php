@@ -4,37 +4,38 @@ namespace NiceForNow\HairCare\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
-use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Controller\Result\RawFactory;
 use Magento\Framework\View\Result\PageFactory;
+
 
 class getajax extends Action
 {
 
     /**
-     * @var \Magento\Framework\View\Result\PageFactory
+     * @var PageFactory
      */
     protected $resultPageFactory;
     /**
-     * @var \Magento\Framework\Controller\Result\RawFactory
+     * @var RawFactory
      */
     protected $resultRawFactory;
 
     /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory resultPageFactory
-     * @param \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
+     * @param Context $context
+     * @param PageFactory resultPageFactory
+     * @param RawFactory $resultRawFactory
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
+        Context $context,
+        PageFactory $resultPageFactory,
+        RawFactory $resultRawFactory
     )
     {
-        $this->resultPageFactory    = $resultPageFactory;
-        $this->resultRawFactory     = $resultRawFactory;
+        $this->resultPageFactory = $resultPageFactory;
+        $this->resultRawFactory = $resultRawFactory;
         parent::__construct($context);
     }
+
     /**
      * Example for returning Raw Text data
      *

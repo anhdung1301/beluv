@@ -15,7 +15,11 @@
             <?php $collection = $block->getCondition(); ?>
             <option value="0">please choose conditon</option>
             <?php foreach ($collection as $subCondition):?>
-                <option value="<?= $subCondition->getId() ?>"><?= $block->escapeHtml(__($subCondition->getName())) ?></option>
+            <?php if($block->getCheckedSelect() == $subCondition->getId()):?>
+                <option value="<?= $subCondition->getId() ?> "selected="selected"><?= $block->escapeHtml(__($subCondition->getName())) ?></option>
+            <?php else:?>
+            <option value="<?= $subCondition->getId() ?>"><?= $block->escapeHtml(__($subCondition->getName())) ?></option>
+            <?php endif; ?>
             <?php endforeach;?>
         </select>
         <input type="submit" >

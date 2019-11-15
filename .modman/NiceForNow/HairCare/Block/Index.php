@@ -80,7 +80,8 @@ class Index extends Template
         Data $helperData,
         RequestInterface $request,
         BeluvType $beluvType
-    ) {
+    )
+    {
         $this->_pageFactory = $pageFactory;
         $this->_beluvFactory = $beluvFactory;
         $this->_collectionFactory = $collectionFactory;
@@ -143,13 +144,25 @@ class Index extends Template
         return $this->getChildHtml('pager');
     }
 
+    /**
+     * @return int|mixed
+     */
     public function getCheckedSelect()
     {
         $condition = $this->getRequest()->getParam('condition1');
-        if($condition){
-            return$condition;
+        if ($condition) {
+            return $condition;
         }
         return -1;
+    }
+    public function getParamSub()
+    {
+        $condition = $this->getRequest()->getParam('condition2');
+        if ($condition) {
+            return $condition;
+        }
+        return -1;
+
     }
 
     /**
@@ -160,11 +173,15 @@ class Index extends Template
     {
         $this->itemsPerPage = $this->_scopeConfig->getValue('catalog/frontend/grid_per_page_values');
         $pageOnList = explode(',', $this->itemsPerPage);
+        $arrayPageList = [];
+        foreach ($pageOnList as $item) {
+            $arrayPageList[$item] = $item;
+        }
         parent::_prepareLayout();
 
         if ($this->getListNews()) {
             $pager = $this->getLayout()->createBlock('Magento\Theme\Block\Html\Pager', 'nicefornow.haircare.pager')
-                ->setAvailableLimit($pageOnList)
+                ->setAvailableLimit($arrayPageList)
                 ->setShowPerPage(true)
                 ->setCollection($this->getListNews());
 
