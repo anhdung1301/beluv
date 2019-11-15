@@ -135,7 +135,7 @@ class Index extends Template
 
         if ($this->getListNews()) {
             $pager = $this->getLayout()->createBlock('Magento\Theme\Block\Html\Pager', 'nicefornow.haircare.pager')
-                ->setAvailableLimit([1 => 1, 10 => 10, 15 => 15, 20 => 20])
+                ->setAvailableLimit([6 => 6, 10 => 10, 15 => 15, 20 => 20])
                 ->setShowPerPage(true)
                 ->setCollection($this->getListNews());
 
@@ -151,6 +151,6 @@ class Index extends Template
      */
     public function getListNews()
     {
-        return $this->_coreRegistry->registry('data_beluv');
+       return $this->_coreRegistry->registry('data_beluv');
     }
 }

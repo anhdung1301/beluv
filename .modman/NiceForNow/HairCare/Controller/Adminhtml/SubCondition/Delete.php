@@ -31,7 +31,6 @@ class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition impl
         $resultRedirect = $this->resultRedirectFactory->create();
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('sub_id');
-var_dump($id);die;
         if ($id) {
             try {
 

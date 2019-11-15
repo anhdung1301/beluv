@@ -8,6 +8,7 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Registry;
+use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
@@ -48,12 +49,14 @@ class index extends Action
         DataPersistorInterface $dataPersistor,
         PageFactory $pageFactory,
         Registry $_coreRegistry,
+        SessionManagerInterface $coreSession,
         CollectionFactory $collectionFactory
     ) {
         $this->_dataPersistor = $dataPersistor;
         $this->_pageFactory = $pageFactory;
         $this->_coreRegistry = $_coreRegistry;
         $this->_collectionFactory = $collectionFactory;
+        $this->_coreSession = $coreSession;
         return parent::__construct($context);
     }
 
@@ -65,23 +68,17 @@ class index extends Action
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $limit = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 2;
         $data = $this->getRequest()->getPost();
-
         if ($data['condition2'] == 0) {
             $collection = $this->_collectionFactory->create()
                 ->addFieldToFilter('condition_id', ['eq' => $data['condition1']]);
-            $collection->setPageSize($limit);
-            $collection->setCurPage($page);
-            $this->_coreRegistry->register('data_beluv', $collection);
-            return $this->_pageFactory->create();
-        }else {
+        } elseif ($data['condition2'] !== 0) {
             $collection = $this->_collectionFactory->create()
-                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
+                ->addFieldToFilter('condition_id', ['eq' =>  $data['condition1']])
                 ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
-
-            $collection->setPageSize($limit);
-            $collection->setCurPage($page);
-            $this->_coreRegistry->register('data_beluv', $collection);
-            return $this->_pageFactory->create();
         }
+        $collection->setPageSize($limit);
+        $collection->setCurPage($page);
+        $this->_coreRegistry->register('data_beluv', $collection);
+        return $this->_pageFactory->create();
     }
 }

@@ -45,8 +45,8 @@ class DataProvider extends ModifierPoolDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $blockCollectionFactory,
         DataPersistorInterface $dataPersistor,
+        CollectionFactory $blockCollectionFactory,
         array $meta = [],
         array $data = [],
         PoolInterface $pool = null
