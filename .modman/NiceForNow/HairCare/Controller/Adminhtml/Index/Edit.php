@@ -18,6 +18,12 @@ use NiceForNow\HairCare\Model\Beluv;
 class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Beluv implements HttpGetActionInterface
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var PageFactory
      */
     protected $resultPageFactory;

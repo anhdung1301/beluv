@@ -21,6 +21,12 @@ use NiceForNow\HairCare\Model\SubCondition;
 class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition implements HttpPostActionInterface
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @return ResponseInterface|Redirect|ResultInterface
      */
 

@@ -11,9 +11,6 @@ class Beluv extends AbstractModel implements IdentityInterface
     protected $_cacheTag = 'custom_beluv';
 
     protected $_eventPrefix = 'custom_beluv';
-    const Salon = 0;
-    const Home_daily = 1;
-    const Home_Weekly = 2;
 
 
     protected function _construct()

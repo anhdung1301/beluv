@@ -7,6 +7,7 @@
 namespace NiceForNow\HairCare\Block\Widget;
 
 use Magento\Framework\View\Element\Template;
+use NiceForNow\HairCare\Model\Config\Source\Active;
 use NiceForNow\HairCare\Model\ResourceModel\SubCondition\CollectionFactory;
 
 class SubCondition extends Template
@@ -45,7 +46,7 @@ class SubCondition extends Template
         /** @var \NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection $collection */
         $collection = $this->collectionFactory->create();
         $collection->addFieldToFilter('condition_id', $conditionId)
-            ->addFieldToFilter('is_active', ['eq' => 1]);
+            ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
         return $collection;
     }
 }

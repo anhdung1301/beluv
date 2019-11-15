@@ -11,7 +11,12 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 
 class Delete extends \NiceForNow\HairCare\Controller\Adminhtml\Condition implements HttpPostActionInterface
 {
-
+    /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
     /**
      * @return ResponseInterface|Redirect|ResultInterface
      */

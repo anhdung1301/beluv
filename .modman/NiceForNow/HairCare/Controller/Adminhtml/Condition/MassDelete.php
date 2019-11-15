@@ -23,7 +23,7 @@ class MassDelete extends AbstractMassDelete
      *
      * @see _isAllowed()
      */
-    const ADMIN_RESOURCE = 'NiceForNow_HairCare::codition';
+    const ADMIN_RESOURCE = 'NiceForNow_HairCare::page_delete';
     /**
      * @var CollectionFactory
      */

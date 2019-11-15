@@ -1,7 +1,7 @@
 <?php
 
 namespace NiceForNow\HairCare\Model\Source;
-
+use NiceForNow\HairCare\Model\Config\Source\Active;
 use Magento\Framework\Data\OptionSourceInterface;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
 
@@ -35,7 +35,8 @@ class Condition implements OptionSourceInterface
     public function toOptionArray()
     {
         /** @var \NiceForNow\HairCare\Model\ResourceModel\Condition\Collection $configOptions */
-        $configOptions = $this->collectionFactory->create();
+        $configOptions = $this->collectionFactory->create()
+            ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
         if (empty($this->options)) {
             $this->options = $configOptions->toOptionArray();
         }

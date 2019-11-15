@@ -18,6 +18,12 @@ use NiceForNow\HairCare\Model\ConditionFactory;
 class Save extends \NiceForNow\HairCare\Controller\Adminhtml\AbstractSave
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var ConditionFactory
      */
     protected $modelFactory;

@@ -11,6 +11,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
+use NiceForNow\HairCare\Model\Config\Source\Active;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 
 /**
@@ -65,18 +66,23 @@ class index extends Action
      */
     public function execute()
     {
+
         $page = ($this->getRequest()->getParam('p')) ? $this->getRequest()->getParam('p') : 1;
         $limit = ($this->getRequest()->getParam('limit')) ? $this->getRequest()->getParam('limit') : 2;
-        $data = $this->getRequest()->getPost();
-        if ($data['condition2'] == 0) {
+
+
+        $data = $this->getRequest()->getParams();
+        $condition2  = isset($data['condition2'])? $data['condition2'] : null;
+        $condition1  =isset($data['condition1'])? $data['condition1'] : null;
+        if ($condition2 == null or $data['condition2'] == 0) {
             $collection = $this->_collectionFactory->create()
-                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
-                ->addFieldToFilter('is_active', ['eq' => 1]);
-        } elseif ($data['condition2'] !== 0) {
+                ->addFieldToFilter('condition_id', ['eq' => $condition1])
+                ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
+        } elseif ($condition2 !== null) {
             $collection = $this->_collectionFactory->create()
-                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
-                ->addFieldToFilter('sub_id', ['eq' => $data['condition2']])
-                ->addFieldToFilter('is_active', ['eq' => 1]);
+                ->addFieldToFilter('condition_id', ['eq' => $condition1])
+                ->addFieldToFilter('sub_id', ['eq' => $condition2])
+                ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
         }
         $collection->setPageSize($limit);
         $collection->setCurPage($page);

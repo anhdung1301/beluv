@@ -18,6 +18,12 @@ use NiceForNow\HairCare\Model\BeluvFactory;
 class Save extends \NiceForNow\HairCare\Controller\Adminhtml\AbstractSave
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var BeluvFactory
      */
     protected $modelFactory;

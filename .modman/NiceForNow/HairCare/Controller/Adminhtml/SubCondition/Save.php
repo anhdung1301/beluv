@@ -19,6 +19,12 @@ use NiceForNow\HairCare\Model\SubConditionFactory;
 class Save extends AbstractSave
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var SubConditionFactory
      */
     protected $modelFactory;

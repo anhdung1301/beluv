@@ -6,6 +6,12 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 class Index extends \NiceForNow\HairCare\Controller\Adminhtml\SubCondition implements HttpGetActionInterface
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $resultPageFactory;

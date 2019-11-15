@@ -22,6 +22,12 @@ use NiceForNow\HairCare\Model\Condition;
 class Edit extends \NiceForNow\HairCare\Controller\Adminhtml\Condition implements HttpGetActionInterface
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var PageFactory
      */
     protected $resultPageFactory;

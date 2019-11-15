@@ -2,7 +2,9 @@
 
 namespace NiceForNow\HairCare\Block;
 
+use Magento\Catalog\Helper\Data;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
@@ -10,6 +12,7 @@ use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Rss\Model\UrlBuilder;
 use NiceForNow\HairCare\Model\BeluvFactory;
+use NiceForNow\HairCare\Model\Config\Source\Active;
 use NiceForNow\HairCare\Model\Config\Source\BeluvType;
 use NiceForNow\HairCare\Model\ResourceModel\Beluv\CollectionFactory;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory as CollectionConditionFactory;
@@ -44,6 +47,16 @@ class Index extends Template
      * @var BeluvType
      */
     protected $beluvType;
+    /**
+     * @var RequestInterface
+     */
+    protected $request;
+    /**
+     * Order items per page.
+     *
+     * @var int
+     */
+    private $itemsPerPage;
 
     /**
      * Index constructor.
@@ -64,6 +77,8 @@ class Index extends Template
         UrlBuilder $urlBuilder,
         CollectionConditionFactory $collectionConditionFactory,
         Registry $_coreRegistry,
+        Data $helperData,
+        RequestInterface $request,
         BeluvType $beluvType
     ) {
         $this->_pageFactory = $pageFactory;
@@ -74,6 +89,8 @@ class Index extends Template
         $this->_collectionConditionFactory = $collectionConditionFactory;
         $this->_coreRegistry = $_coreRegistry;
         $this->beluvType = $beluvType;
+        $this->helperData = $helperData;
+        $this->request = $request;
         parent::__construct($context);
     }
 
@@ -83,7 +100,7 @@ class Index extends Template
     public function getCondition()
     {
         $data = $this->_collectionConditionFactory->create()
-            ->addFieldToFilter('is_active', ['eq' => 1]);
+            ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
         return $data->getData();
     }
 
@@ -126,17 +143,28 @@ class Index extends Template
         return $this->getChildHtml('pager');
     }
 
+    public function getCheckedSelect()
+    {
+        $condition = $this->getRequest()->getParam('condition1');
+        if($condition){
+            return$condition;
+        }
+        return -1;
+    }
+
     /**
      * @return $this|Template
      * @throws LocalizedException
      */
     protected function _prepareLayout()
     {
+        $this->itemsPerPage = $this->_scopeConfig->getValue('catalog/frontend/grid_per_page_values');
+        $pageOnList = explode(',', $this->itemsPerPage);
         parent::_prepareLayout();
 
         if ($this->getListNews()) {
             $pager = $this->getLayout()->createBlock('Magento\Theme\Block\Html\Pager', 'nicefornow.haircare.pager')
-                ->setAvailableLimit([6 => 6, 10 => 10, 15 => 15, 20 => 20])
+                ->setAvailableLimit($pageOnList)
                 ->setShowPerPage(true)
                 ->setCollection($this->getListNews());
 

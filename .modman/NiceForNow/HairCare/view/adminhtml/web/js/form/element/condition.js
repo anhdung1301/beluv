@@ -8,14 +8,6 @@ define([
 ], function ($, _, uiRegistry, select) {
     'use strict';
     return select.extend({
-        // defaults: {
-        //     listens: {
-        //         '${ $.provider }:data.sub_id': 'setDifferedFromDefault'
-        //     }
-        // },
-        // setDifferedFromDefault: function (value) {
-        //     console.log(value);
-        // },
         initialize: function () {
             this._super();
 

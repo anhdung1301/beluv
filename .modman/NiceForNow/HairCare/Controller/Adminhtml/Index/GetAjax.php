@@ -18,6 +18,12 @@ use Magento\Framework\Controller\ResultInterface;
 class GetAjax extends Action
 {
     /**
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
+     */
+    const ADMIN_RESOURCE = 'NiceForNow_HariCare::save';
+    /**
      * @var Http
      */
     protected $request;

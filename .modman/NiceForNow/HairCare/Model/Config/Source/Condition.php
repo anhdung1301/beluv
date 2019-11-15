@@ -3,9 +3,11 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace NiceForNow\HairCare\Model\Config\Source;
 
 use Magento\Framework\Data\OptionSourceInterface;
+use NiceForNow\HairCare\Model\ResourceModel\Condition\Collection;
 use NiceForNow\HairCare\Model\ResourceModel\Condition\CollectionFactory;
 
 /**
@@ -35,8 +37,9 @@ class Condition implements OptionSourceInterface
      */
     public function toOptionArray()
     {
-        /** @var \NiceForNow\HairCare\Model\ResourceModel\Condition\Collection $collection */
-        $collection = $this->collectionFactory->create();
+        /** @var Collection $collection */
+        $collection = $this->collectionFactory->create()
+            ->addFieldToFilter('is_active', ['eq' => Active::STATUS_ENABLED]);
         return $collection->toOptionArray();
     }
 }
