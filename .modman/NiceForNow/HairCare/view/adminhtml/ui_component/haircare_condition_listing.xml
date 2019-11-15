@@ -62,6 +62,7 @@
                     <label translate="true">Delete</label>
                 </settings>
             </action>
+
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
@@ -96,7 +97,17 @@
                 </item>
             </argument>
         </column>
-
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="NiceForNow\HairCare\Model\Config\Source\Active"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
         <actionsColumn name="actions" class="NiceForNow\HairCare\Ui\Component\Listing\Columns\ActionsCondition">
             <settings>
                 <indexField>id</indexField>

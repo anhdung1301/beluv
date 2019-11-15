@@ -82,7 +82,8 @@ class Index extends Template
      */
     public function getCondition()
     {
-        $data = $this->_collectionConditionFactory->create();
+        $data = $this->_collectionConditionFactory->create()
+            ->addFieldToFilter('is_active', ['eq' => 1]);
         return $data->getData();
     }
 
@@ -151,6 +152,6 @@ class Index extends Template
      */
     public function getListNews()
     {
-       return $this->_coreRegistry->registry('data_beluv');
+        return $this->_coreRegistry->registry('data_beluv');
     }
 }

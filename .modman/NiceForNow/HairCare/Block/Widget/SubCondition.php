@@ -44,7 +44,8 @@ class SubCondition extends Template
         $conditionId = $this->getRequest()->getParam('id');
         /** @var \NiceForNow\HairCare\Model\ResourceModel\SubCondition\Collection $collection */
         $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('condition_id', $conditionId);
+        $collection->addFieldToFilter('condition_id', $conditionId)
+            ->addFieldToFilter('is_active', ['eq' => 1]);
         return $collection;
     }
 }

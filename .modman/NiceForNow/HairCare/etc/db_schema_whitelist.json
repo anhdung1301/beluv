@@ -2,7 +2,10 @@
   "custom_condition": {
     "column": {
       "condition_id": true,
-      "name": true
+      "name": true,
+      "is_active": true,
+      "creation_time": true,
+      "update_time": true
     },
     "constraint": {
       "PRIMARY": true
@@ -11,7 +14,10 @@
   "custom_sub_condition": {
     "column": {
       "sub_id": true,
-      "name": true
+      "name": true,
+      "is_active": true,
+      "creation_time": true,
+      "update_time": true
     },
     "constraint": {
       "PRIMARY": true
@@ -24,7 +30,11 @@
       "sub_id": true,
       "type": true,
       "title": true,
-      "description": true
+      "description": true,
+      "is_active": true,
+      "sort_order": true,
+      "creation_time": true,
+      "update_time": true
     },
     "constraint": {
       "PRIMARY": true

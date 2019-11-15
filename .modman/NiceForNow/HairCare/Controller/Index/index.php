@@ -70,11 +70,13 @@ class index extends Action
         $data = $this->getRequest()->getPost();
         if ($data['condition2'] == 0) {
             $collection = $this->_collectionFactory->create()
-                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']]);
+                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
+                ->addFieldToFilter('is_active', ['eq' => 1]);
         } elseif ($data['condition2'] !== 0) {
             $collection = $this->_collectionFactory->create()
-                ->addFieldToFilter('condition_id', ['eq' =>  $data['condition1']])
-                ->addFieldToFilter('sub_id', ['eq' => $data['condition2']]);
+                ->addFieldToFilter('condition_id', ['eq' => $data['condition1']])
+                ->addFieldToFilter('sub_id', ['eq' => $data['condition2']])
+                ->addFieldToFilter('is_active', ['eq' => 1]);
         }
         $collection->setPageSize($limit);
         $collection->setCurPage($page);
